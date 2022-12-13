@@ -14,12 +14,11 @@
 
 ```python
   {
-  "password": "qwerty123", [required, type: "String"]
-  "email": "buival@gmail.com", [required, type: "String"]
-  "city": "Kiev, Shevchenko 38", [not required, type: "String", exemple: "sity, street"]
-  "phone": "25665225585",
-  "city": "Kiev, Shevchenko 38",
-  "name": "Andrii"
+  "password": "qwerty123",       [required, type: "String"]
+  "email": "buival@gmail.com",   [required, type: "String"]
+  "city": "Kiev, Shevchenko 38", [required, type: "String", exemple: "sity, street"]
+  "phone": "25665225585",        [required, type: "String"]
+  "name": "Andrii"               [required, type: "String"]
   }
 ```
 
@@ -58,3 +57,11 @@
 
 - Logout = `/api/users/logout`;
 - Перевіряє Token, та якщо він є - видаляє його з бази данних:
+
+### Routs: Sponsors and News
+
+- Sponsors = `/api/info/sponsors`;
+- Повертає масив об'єктів з партнерами.
+
+- News = `/api/info/news`;
+- Повертає масив об'єктів з новинами.
