@@ -2,6 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 const authRouter = require("./routes/api/auth.js");
+const userRouter = require("./routes/api/userInfo");
 
 // const { STATIC_FILES_DIR } = require('./middlewares/avatarMiddleware');
 const noticesRouter = require("./routes/api/notices");
@@ -17,7 +18,7 @@ app.use(express.json());
 // app.use('/avatars', express.static(STATIC_FILES_DIR));
 
 app.use("/api/notices", noticesRouter);
-
+app.use("/api/usersinfo", userRouter);
 app.use("/api/users", authRouter);
 
 app.use((req, res) => {
