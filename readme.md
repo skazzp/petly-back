@@ -17,7 +17,9 @@
   "password": "qwerty123", [required, type: "String"]
   "email": "buival@gmail.com", [required, type: "String"]
   "city": "Kiev, Shevchenko 38", [not required, type: "String", exemple: "sity, street"]
-  "birthday": "1995, 11, 17", [not required, type: "String", exemple: "1995, 11, 17" ]
+  "phone": "25665225585",
+  "city": "Kiev, Shevchenko 38",
+  "name": "Andrii"
   }
 ```
 
@@ -25,15 +27,16 @@
 
 ```python
   {
-  "email": "blanka@gmail.com",
-  "city": "Kiev, Shevchenko 38",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9. eyJfaWQiOiI2Mzk4OWFmNzI0MDVkY2RiZjI2N2IyOTMiLCJpYXQiOjE2NzA5NDU1MjcsImV4cCI6MTY3MzUzNzUyN30. Z3ZHNvpLZlXSiIjepcgcbEnHk1P6J-QRE9iPBBpY2Mk",
-  "avatarURL": "//www.gravatar.com/avatar/aa80d6369342022148fd2261331f6c52",
-  "birthday": "1995-11-16T23:00:00.000Z",
-  "\_id": "63989af72405dcdbf267b293",
-  "createdAt": "2022-12-13T15:32:07.381Z",
-  "updatedAt": "2022-12-13T15:32:07.381Z",
-  "\_\_v": 0
+   "email": "bulivar@gmail.com",
+    "name": "Andrii",
+    "city": "Kiev, Shevchenko 38",
+    "phone": "25665225585",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk4YzQ2YWZhOTE0N2NlYThmNGYyNTUiLCJpYXQiOjE2NzA5NTYxMzgsImV4cCI6MTY3MzU0ODEzOH0.Yfmgk_9CQ-0dGwoyKwezEMbiJ1vtEL7c7a119oJxhfg",
+    "avatarURL": "//www.gravatar.com/avatar/70e981b9c72ab985cf3eb1e22cb143ae",
+    "_id": "6398c46afa9147cea8f4f255",
+    "createdAt": "2022-12-13T18:28:58.401Z",
+    "updatedAt": "2022-12-13T18:28:58.401Z",
+    "__v": 0
   }
 ```
 
