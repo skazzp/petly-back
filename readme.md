@@ -12,14 +12,18 @@
 - Register = `/api/users/signup`;
 - Приймає об'єкт з полями:
 
+```python
   {
-  "password": "qwerty123", (Обов'язкове, type: "String")
-  "email": "buival@gmail.com", (Обов'язкове, type: "String")
-  "city": "Kiev, Shevchenko 38", (Необов'язкове, type: "String", exemple: "sity, street" )
-  "birthday": "1995, 11, 17", (Необов'язкове, type: "String", exemple: "1995, 11, 17" )
+  "password": "qwerty123", [required, type: "String"]
+  "email": "buival@gmail.com", [required, type: "String"]
+  "city": "Kiev, Shevchenko 38", [not required, type: "String", exemple: "sity, street"]
+  "birthday": "1995, 11, 17", [not required, type: "String", exemple: "1995, 11, 17" ]
   }
+```
 
 - Повертає об'єкт:
+
+```python
   {
   "email": "blanka@gmail.com",
   "city": "Kiev, Shevchenko 38",
@@ -31,13 +35,16 @@
   "updatedAt": "2022-12-13T15:32:07.381Z",
   "\_\_v": 0
   }
+```
 
 - Login = `/api/users/login`;
 - Приймає об'єкт з полями:
 
+```python
   {
-  "password": "qwerty123", (Обов'язкове, type: "String")
-  "email": "buival@gmail.com", (Обов'язкове, type: "String")
+  "password": "qwerty123", [required, type: "String"]
+  "email": "buival@gmail.com", [required, type: "String"]
   }
+```
 
 - Повертає об'єкт: (аналонічно об'єкту реєстаціі)
