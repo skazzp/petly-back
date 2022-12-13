@@ -10,10 +10,11 @@ const addContact = async (req) => {
 
   const doc = new Users({
     email: req.body.email,
-    fullName: req.body.fullName,
+    name: req.body.fullName,
     password: hash,
-    subscription: req.body.subscription,
+    city: req.body.email,
     avatarURL: avatar,
+    birthday: req.body.birthday,
   });
   const user = await doc.save();
   return user;
