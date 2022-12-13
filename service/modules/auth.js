@@ -25,11 +25,12 @@ const addUser = async (req) => {
 
   const doc = new Users({
     email: req.body.email,
-    name: req.body.fullName,
+    name: req.body.name,
+    phone: req.body.phone,
     password: hash,
     city: req.body.city,
     avatarURL: avatar,
-    birthday: new Date(req.body.birthday),
+    // birthday: new Date(req.body.birthday),
   });
   const user = await doc.save();
   return user;

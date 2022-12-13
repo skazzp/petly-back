@@ -13,12 +13,19 @@ const userShema = mongoose.Schema(
     },
     name: {
       type: String,
+      required: [true, "Name is required"],
+      default: "",
     },
     city: {
       type: String,
+      required: [true, "Sity is required, format(syty, street)"],
+      default: "",
     },
     phone: {
       type: String,
+      required: [true, "Phone is required"],
+      default: "",
+      unique: true,
     },
     token: {
       type: String,
