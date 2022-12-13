@@ -4,7 +4,7 @@ const cors = require("cors");
 const authRouter = require("./routes/api/auth.js");
 
 // const { STATIC_FILES_DIR } = require('./middlewares/avatarMiddleware');
-// const contactsRouter = require('./routes/api/contactsRouter');
+const noticesRouter = require("./routes/api/notices");
 // const authRouter = require('./routes/api/authRouter');
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(express.json());
 
 // app.use('/avatars', express.static(STATIC_FILES_DIR));
 
-// app.use('/api/contacts', contactsRouter);
+app.use("/api/notices", noticesRouter);
 
 app.use("/api/users", authRouter);
 
