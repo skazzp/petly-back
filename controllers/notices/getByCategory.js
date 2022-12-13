@@ -1,9 +1,7 @@
-const asyncHandler = require("express-async-handler");
+const { Notice } = require("../../service/schemas/Notice");
+const { errorHandler } = require("../../helpers/errorHandler");
 
-const { Notice } = require("../../models");
-const { RequestError } = require("../../helpers");
-
-const getByCategory = asyncHandler(async (req, res) => {
+const getByCategory = async (req, res) => {
   const { category } = req.params;
   const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
@@ -14,7 +12,7 @@ const getByCategory = asyncHandler(async (req, res) => {
   }).populate("owner", "email phone");
 
   if (!notices) {
-    throw RequestError(404, "Not found");
+    throw errorHandler(404, "Not found");
   }
 
   const total = await Notice.find({ category }).count();
@@ -26,6 +24,6 @@ const getByCategory = asyncHandler(async (req, res) => {
     totalPages: Math.ceil(total / limit),
     page: page * 1,
   });
-});
+};
 
 module.exports = getByCategory;

@@ -1,14 +1,12 @@
-const asyncHandler = require("express-async-handler");
+const { errorHandler } = require("../../helpers/errorHandler");
 
-const { RequestError } = require("../../helpers");
-
-const deleteFromFavorites = asyncHandler(async (req, res) => {
+const deleteFromFavorites = async (req, res) => {
   const { user } = req;
   const { noticeId } = req.params;
 
   const idx = user.favorites.indexOf(noticeId);
   if (idx === -1) {
-    throw RequestError(400, "Favorite is not found");
+    throw errorHandler(400, "Favorite is not found");
   }
 
   user.favorites.splice(idx, 1);
@@ -19,6 +17,6 @@ const deleteFromFavorites = asyncHandler(async (req, res) => {
     status: "success",
     message: "Notice is deleted from favorites",
   });
-});
+};
 
 module.exports = deleteFromFavorites;

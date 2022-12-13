@@ -1,9 +1,7 @@
-const asyncHandler = require("express-async-handler");
+const { Notice } = require("../../service/schemas/Notice");
+const { errorHandler } = require("../../helpers/errorHandler");
 
-const { Notice } = require("../../models");
-const { RequestError } = require("../../helpers");
-
-const getById = asyncHandler(async (req, res) => {
+const getById = async (req, res) => {
   const { noticeId } = req.params;
   const notice = await Notice.findById(
     noticeId,
@@ -11,7 +9,7 @@ const getById = asyncHandler(async (req, res) => {
   ).populate("owner", "email phone");
 
   if (!notice) {
-    throw RequestError(404, "Not found");
+    throw errorHandler(404, "Not found");
   }
 
   res.json({
@@ -19,6 +17,6 @@ const getById = asyncHandler(async (req, res) => {
     status: "success",
     data: notice,
   });
-});
+};
 
 module.exports = getById;

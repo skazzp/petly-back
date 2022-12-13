@@ -6,7 +6,6 @@ const getByCategory = require("./getByCategory");
 const getById = require("./getById");
 const getFavorites = require("./getFavorites");
 const getPersonalNotices = require("./getPersonalNotices");
-const getAll = require("./getAll");
 
 module.exports = {
   addPersonalNotice,
@@ -17,5 +16,4 @@ module.exports = {
   getById,
   getFavorites,
   getPersonalNotices,
-  getAll,
 };
