@@ -8,7 +8,7 @@
 
 ### Routs: Auth
 
-- BASEURL =
+- BASEURL = https://petly-bc26.cyclic.app/
 - Register = `/api/users/signup`;
 - Приймає об'єкт з полями:
 
