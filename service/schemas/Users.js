@@ -16,7 +16,6 @@ const userShema = mongoose.Schema(
     },
     city: {
       type: String,
-      enum: ["sity, region"],
     },
     phone: {
       type: String,
