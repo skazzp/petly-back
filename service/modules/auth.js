@@ -12,7 +12,7 @@ const addContact = async (req) => {
     email: req.body.email,
     name: req.body.fullName,
     password: hash,
-    city: req.body.email,
+    city: req.body.city,
     avatarURL: avatar,
     birthday: req.body.birthday,
   });
