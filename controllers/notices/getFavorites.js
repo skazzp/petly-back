@@ -1,6 +1,4 @@
-const asyncHandler = require("express-async-handler");
-
-const getFavorites = asyncHandler(async (req, res) => {
+const getFavorites = async (req, res) => {
   const { user } = req;
   const { page = 1, limit = 100 } = req.query;
   // const skip = (page - 1) * limit;
@@ -20,6 +18,6 @@ const getFavorites = asyncHandler(async (req, res) => {
     totalPages: Math.ceil(total / limit),
     page: page * 1,
   });
-});
+};
 
 module.exports = getFavorites;
