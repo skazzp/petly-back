@@ -15,7 +15,7 @@ const Regisration = async (req, res, next) => {
     );
     console.log(token);
 
-    await updateUser(user._id, token);
+    await updateUser(user._id, { token: token });
     const { password, ...userData } = user._doc;
 
     res.status(201).json({ ...userData, token });

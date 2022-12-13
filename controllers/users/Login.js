@@ -15,7 +15,7 @@ const Login = async (req, res, next) => {
       }
     );
 
-    await updateUser({ _id: user._id }, { token: token }, { new: true });
+    await updateUser(user._id, { token: token });
     const { password, ...userData } = user._doc;
 
     res.status(201).json({ ...userData, token });

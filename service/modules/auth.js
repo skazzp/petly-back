@@ -36,12 +36,23 @@ const addUser = async (req) => {
   return user;
 };
 
-const updateUser = async (id, token) => {
-  await Users.findByIdAndUpdate({ _id: id }, { token: token }, { new: true });
+const getUserById = async (req) => {
+  const user = await Users.findById({ _id: req.userId });
+  if (!user) {
+    return res.status(401).json({
+      message: "Not authorized",
+    });
+  }
+  return user;
+};
+
+const updateUser = async (id, body) => {
+  await Users.findByIdAndUpdate({ _id: id }, body, { new: true });
 };
 
 module.exports = {
   addUser,
   updateUser,
   getUserOne,
+  getUserById,
 };
