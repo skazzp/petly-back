@@ -1,4 +1,4 @@
-function tryCatchWrapper(request) {
+function errorHandler(request) {
   return async (req, res, next) => {
     try {
       await request(req, res, next);
@@ -9,4 +9,4 @@ function tryCatchWrapper(request) {
   };
 }
 
-module.exports = { tryCatchWrapper };
+module.exports = errorHandler;
