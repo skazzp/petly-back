@@ -1,12 +1,12 @@
 const { Router } = require("express");
 
 const { controllerNotices } = require("../../controllers");
-// const {
-//   auth,
-//   uploadMiddleware,
-//   upload,
-//   cleanImgMiddleware,
-// } = require("../../middleware");
+const {
+  auth,
+  uploadMiddleware,
+  upload,
+  cleanImgMiddleware,
+} = require("../../middlewares");
 // const {
 //   schemaJoiValidator,
 //   isValidId,
@@ -31,41 +31,33 @@ router.get(
 router.get(
   "/favorites/:noticeId",
   // isValidId("noticeId"),
-  //  auth,
+  auth,
   controllerNotices.addToFavorites
 );
 
-router.get(
-  "/favorites",
-  // auth,
-  controllerNotices.getFavorites
-);
+router.get("/favorites", auth, controllerNotices.getFavorites);
 router.delete(
   "/favorites/:noticeId",
   // isValidId("noticeId"),
-  // auth,
+  auth,
   controllerNotices.deleteFromFavorites
 );
 
-router.get(
-  "/personal",
-  // auth,
-  controllerNotices.getPersonalNotices
-);
+router.get("/personal", auth, controllerNotices.getPersonalNotices);
 
 router.delete(
   "/:noticeId",
   // isValidId("noticeId"),
-  // auth,
-  // cleanImgMiddleware,
+  auth,
+  cleanImgMiddleware,
   controllerNotices.deletePersonalNotice
 );
 
 router.post(
   "/",
-  // auth,
-  // upload.single("image"),
-  // uploadMiddleware,
+  auth,
+  upload.single("image"),
+  uploadMiddleware,
   // schemaJoiValidator(schemasJoiNotice.addSchema),
   controllerNotices.addPersonalNotice
 );
