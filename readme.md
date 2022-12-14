@@ -83,7 +83,7 @@
 Додати пост: POST - /api/notices
 
 - Приймає об'єкт з полями:
-- ```python
+```python
 {
      "category": "sell",
     "title": "some title 3",
