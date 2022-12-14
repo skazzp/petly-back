@@ -1,8 +1,7 @@
 const { Notice } = require("../../service/schemas/Notice");
 
 const addPersonalNotice = async (req, res) => {
-  const { _id } = req.user;
-  const newNotice = await Notice.create({ ...req.body, owner: _id });
+  const newNotice = await Notice.create({ ...req.body, owner: req.userId });
 
   res.status(201).json({
     code: 201,
