@@ -14,11 +14,11 @@
 
 ```python
   {
-  "password": "qwerty123",       [required, type: "String"]
-  "email": "buival@gmail.com",   [required, type: "String"]
-  "city": "Kiev, Shevchenko 38", [required, type: "String", exemple: "sity, street"]
-  "phone": "25665225585",        [required, type: "String"]
-  "name": "Andrii"               [required, type: "String"]
+    "password": "qwerty123",       [required, type: "String"]
+    "email": "buival@gmail.com",   [required, type: "String"]
+    "city": "Kiev, Shevchenko 38", [required, type: "String", exemple: "sity, street"]
+    "phone": "25665225585",        [required, type: "String"]
+    "name": "Andrii"               [required, type: "String"]
   }
 ```
 
@@ -78,7 +78,7 @@
     "data": [],
     "totalPages": 1,
     "page": 1
-}
+  }
 ```
 Додати пост: POST - /api/notices
 
