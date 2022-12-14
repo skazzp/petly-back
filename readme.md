@@ -84,8 +84,8 @@
 
 - Приймає об'єкт з полями:
 ```python
-{
-     "category": "sell",
+  {
+    "category": "sell",
     "title": "some title 3",
     "name": "some name 3",
     "birthday": "2000-10-11",
@@ -96,5 +96,5 @@
     "photoId": "photo id 3",
     "comments": "comments 3333333",
     "price": 100
-}
+  }
 ```
