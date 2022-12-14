@@ -4,6 +4,7 @@ const cors = require("cors");
 const authRouter = require("./routes/api/auth.js");
 const userRouter = require("./routes/api/userInfo");
 const infoRouter = require("./routes/api/info.js");
+const petRouter = require("./routes/api/pet");
 
 // const { STATIC_FILES_DIR } = require('./middlewares/avatarMiddleware');
 const noticesRouter = require("./routes/api/notices");
@@ -22,6 +23,7 @@ app.use("/api/notices", noticesRouter);
 app.use("/api/usersinfo", userRouter);
 app.use("/api/users", authRouter);
 app.use("/api/info", infoRouter);
+app.use("/api/pets", petRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

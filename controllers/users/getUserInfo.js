@@ -2,7 +2,6 @@ const getInfo = require("../../service/modules/getInfo");
 
 const getUserInformation = async (req, res, next) => {
   const { id } = req.params;
-  console.log(req.params);
 
   try {
     const result = await getInfo(id);
