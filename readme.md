@@ -6,7 +6,7 @@
   кожним PR та виправляти всі помилки лінтера
 - `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
 
-### Routs: Auth
+### Routes: Auth
 
 - BASEURL = https://petly-bc26.cyclic.app/
 - Register = `/api/users/signup`;
@@ -58,7 +58,7 @@
 - Logout = `/api/users/logout`;
 - Перевіряє Token, та якщо він є - видаляє його з бази данних:
 
-### Routs: Sponsors and News
+### Routes: Sponsors and News
 
 - Sponsors = `/api/info/sponsors`;
 - Повертає масив об'єктів з партнерами.
@@ -66,7 +66,7 @@
 - News = `/api/info/news`;
 - Повертає масив об'єктів з новинами.
 
-### Routs: Notices
+### Routes: Notices
 
 Отримати всі пости: GET - /api/notices
 
@@ -84,7 +84,7 @@
 
 - Приймає об'єкт з полями:
 - ```python
-  {
+{
      "category": "sell",
     "title": "some title 3",
     "name": "some name 3",
