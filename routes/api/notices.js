@@ -1,40 +1,46 @@
-const { Router } = require('express');
+const { Router } = require("express");
 
-const { controllerNotices } = require('../../controllers');
-const { auth, uploadMiddleware, upload, cleanImgMiddleware } = require('../../middlewares');
+const { controllerNotices } = require("../../controllers");
+const {
+  auth,
+  uploadMiddleware,
+  upload,
+  cleanImgMiddleware,
+} = require("../../middlewares");
+const checkAuth = require("../../helpers/checkAuth");
 // const {
 //   schemaJoiValidator,
 //   isValidId,
 //   isValidCategory,
 // } = require("../../validators");
-const { schemasJoiNotice } = require('../../service/schemas/Notice');
+const { schemasJoiNotice } = require("../../service/schemas/Notice");
 
 const router = Router();
 
-router.get('/', controllerNotices.getAll);
+router.get("/", controllerNotices.getAll);
 
 router.get(
-  '/category/:category',
+  "/category/:category",
   // isValidCategory,
   controllerNotices.getByCategory
 );
 
 router.get(
-  '/:noticeId',
+  "/:noticeId",
   // isValidId("noticeId"),
   controllerNotices.getById
 );
 
 router.get(
-  '/favorites/:noticeId',
+  "/favorites/:noticeId",
   // isValidId("noticeId"),
   auth,
   controllerNotices.addToFavorites
 );
 
-router.get('/favorites', auth, controllerNotices.getFavorites);
+router.get("/favorites", auth, controllerNotices.getFavorites);
 router.delete(
-  '/favorites/:noticeId',
+  "/favorites/:noticeId",
   // isValidId("noticeId"),
   auth,
   controllerNotices.deleteFromFavorites
@@ -43,7 +49,7 @@ router.delete(
 // router.get("/personal", auth, controllerNotices.getPersonalNotices);
 
 router.delete(
-  '/:noticeId',
+  "/:noticeId",
   // isValidId("noticeId"),
   auth,
   cleanImgMiddleware,
@@ -51,10 +57,10 @@ router.delete(
 );
 
 router.post(
-  '/',
-  auth,
-  upload.single('image'),
-  uploadMiddleware,
+  "/",
+  checkAuth,
+  // upload.single("image"),
+  // uploadMiddleware,
   // schemaJoiValidator(schemasJoiNotice.addSchema),
   controllerNotices.addPersonalNotice
 );
