@@ -7,6 +7,7 @@ const {
   upload,
   cleanImgMiddleware,
 } = require("../../middlewares");
+const checkAuth = require("../../helpers/checkAuth");
 // const {
 //   schemaJoiValidator,
 //   isValidId,
@@ -15,6 +16,8 @@ const {
 const { schemasJoiNotice } = require("../../service/schemas/Notice");
 
 const router = Router();
+
+router.get("/", controllerNotices.getAll);
 
 router.get(
   "/category/:category",
@@ -43,7 +46,7 @@ router.delete(
   controllerNotices.deleteFromFavorites
 );
 
-router.get("/personal", auth, controllerNotices.getPersonalNotices);
+// router.get("/personal", auth, controllerNotices.getPersonalNotices);
 
 router.delete(
   "/:noticeId",
@@ -55,9 +58,9 @@ router.delete(
 
 router.post(
   "/",
-  auth,
-  upload.single("image"),
-  uploadMiddleware,
+  checkAuth,
+  // upload.single("image"),
+  // uploadMiddleware,
   // schemaJoiValidator(schemasJoiNotice.addSchema),
   controllerNotices.addPersonalNotice
 );
