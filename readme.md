@@ -68,7 +68,7 @@
 
 ### Routs: Notices
 
-GET - /api/notices
+Отримати всі пости: GET - /api/notices
 
 Повертає об'єкт:
 ```python
@@ -78,5 +78,23 @@ GET - /api/notices
     "data": [],
     "totalPages": 1,
     "page": 1
+}
+```
+Додати пост: POST - /api/notices
+
+- Приймає об'єкт з полями:
+- ```python
+  {
+     "category": "sell",
+    "title": "some title 3",
+    "name": "some name 3",
+    "birthday": "2000-10-11",
+    "breed": "some breed 3",
+    "sex": "male",
+    "location": "Kyiv, Kyivska 3",
+    "photoURL": "photo URL 3",
+    "photoId": "photo id 3",
+    "comments": "comments 3333333",
+    "price": 100
 }
 ```
