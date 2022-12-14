@@ -16,6 +16,8 @@ const { schemasJoiNotice } = require("../../service/schemas/Notice");
 
 const router = Router();
 
+router.get("/", controllerNotices.getAll);
+
 router.get(
   "/category/:category",
   // isValidCategory,
