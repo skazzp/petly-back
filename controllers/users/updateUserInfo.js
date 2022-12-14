@@ -2,8 +2,6 @@ const updateInfo = require("../../service/modules/updateInfo");
 
 const updateUserInfo = async (req, res, next) => {
   try {
-    console.log(req.params);
-    console.log(req.body);
     const user = await updateInfo(req.params.id, req.body);
 
     if (!user) {
