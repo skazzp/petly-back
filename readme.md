@@ -65,3 +65,18 @@
 
 - News = `/api/info/news`;
 - Повертає масив об'єктів з новинами.
+
+### Routs: Notices
+
+GET - /api/notices
+
+Повертає об'єкт:
+```python
+  {
+    "code": 200,
+    "status": "success",
+    "data": [],
+    "totalPages": 1,
+    "page": 1
+}
+```
