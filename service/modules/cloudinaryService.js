@@ -1,17 +1,13 @@
 const cloudinary = require("cloudinary").v2;
-const fs = require("fs/promises");
 
 const path = require("path");
 const configPath = path.join(__dirname, "..", "config", ".env");
 require("dotenv").config({ path: configPath });
 
-const api_key = process.env.CLOUDINARY_API_KEY;
-const api_secret = process.env.CLOUDINARY_API_SECRET;
-
 cloudinary.config({
-  cloud_name: "dxxsrtjlb",
-  api_key,
-  api_secret,
+  cloud_name: "dnkfxtdl2",
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const cloudUpload = async (uploadPath, public_id, folder, format) => {
