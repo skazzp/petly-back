@@ -36,7 +36,8 @@ const userShema = mongoose.Schema(
       default: "",
     },
     birthday: {
-      type: Date,
+      type: String,
+      default: "",
     },
     favorites: {
       type: [mongoose.Schema.Types.ObjectId],

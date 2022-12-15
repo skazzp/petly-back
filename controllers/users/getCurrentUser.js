@@ -4,7 +4,6 @@ const { getPets } = require("../../service/modules/pets");
 const getUserInformation = async (req, res, next) => {
   try {
     const user = await getInfo(req);
-    console.log(user);
     const userPets = await getPets(req);
     if (!user) {
       res.json({

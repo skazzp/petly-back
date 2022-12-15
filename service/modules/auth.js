@@ -30,7 +30,7 @@ const addUser = async (req) => {
     password: hash,
     city: req.body.city,
     avatarURL: avatar,
-    // birthday: new Date(req.body.birthday),
+    birthday: new Date(req.body.birthday),
   });
   const user = await doc.save();
   return user;

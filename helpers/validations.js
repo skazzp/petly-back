@@ -6,6 +6,7 @@ const schemaRegister = Joi.object({
   phone: Joi.string().required(),
   city: Joi.string().required(),
   name: Joi.string().min(3).max(15).required(),
+  birthday: Joi.string(),
 });
 
 const schemaLogin = Joi.object({
