@@ -1,15 +1,14 @@
-// const { createPet } = require("../../service/modules/createPet");
-const Pet = require("../../service/schemas/Pet");
+const { createPet } = require("../../service/modules/pets");
 
 const createPetController = async (req, res) => {
-  // В req.body должен быть owner: id
-  const newPet = await Pet.create({ ...req.body });
+  try {
+    const newPet = await createPet(req);
 
-  res.status(201).json({
-    code: 201,
-    status: "success",
-    data: newPet,
-  });
+    res.status(201).json(newPet);
+  } catch (err) {
+    console.log(err);
+    res.status(409).json({ massage: "no create" });
+  }
 };
 
 module.exports = createPetController;

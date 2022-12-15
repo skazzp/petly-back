@@ -1,10 +1,10 @@
 const getInfo = require("../../service/modules/getInfo");
 
 const getUserInformation = async (req, res, next) => {
-  const { id } = req.params;
+  // const { id } = req.params;
 
   try {
-    const result = await getInfo(id);
+    const result = await getInfo(req);
     if (!result) {
       res.json({
         status: "success",

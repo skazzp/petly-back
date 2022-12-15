@@ -13,7 +13,17 @@ const schemaLogin = Joi.object({
   password: Joi.string().pattern(new RegExp(pattern)),
 });
 
+const schemaCreatePet = Joi.object({
+  breed: Joi.string().required(),
+  photoURL: Joi.string().required(),
+  photoId: Joi.string(),
+  name: Joi.string().min(3).max(15).required(),
+  comments: Joi.string(),
+  birthday: Joi.string(),
+});
+
 module.exports = {
   schemaRegister,
   schemaLogin,
+  schemaCreatePet,
 };
