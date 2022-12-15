@@ -1,4 +1,6 @@
-const { Notice, User } = require("../../service/schemas/Notice");
+const { Notice } = require("../../service/schemas/Notice");
+const { Users } = require("../../service/schemas/Users");
+
 const { errorHandler } = require("../../helpers/errorHandler");
 
 const deletePersonalNotice = async (req, res) => {
@@ -10,13 +12,14 @@ const deletePersonalNotice = async (req, res) => {
     throw errorHandler(404, "Not found");
   }
 
-  // Зачистити ІД в обраних серед юзерів ?
-  const users = await User.find({ favorites: noticeId });
+  const users = await Users.find({ favorites: noticeId });
   users.forEach(async (user) => {
     const idx = user.favorites.indexOf(noticeId);
     user.favorites.splice(idx, 1);
     await user.save();
   });
+
+  // TODO: clear favorite
 
   res.json({
     code: 200,
