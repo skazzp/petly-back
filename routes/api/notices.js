@@ -26,9 +26,7 @@ router.get(
   controllerNotices.getByCategory
 );
 
-router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
-
-router.get("/fav", checkAuth, controllerNotices.getFavorites);
+router.get("/favorites", checkAuth, controllerNotices.getFavorites);
 router.get(
   "/favorites/:noticeId",
   isValidId("noticeId"),
@@ -39,10 +37,11 @@ router.get(
 router.delete(
   "/favorites/:noticeId",
   isValidId("noticeId"),
-  auth,
+  checkAuth,
   controllerNotices.deleteFromFavorites
 );
 
+router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
 // router.get("/personal", auth, controllerNotices.getPersonalNotices);
 
 router.delete(

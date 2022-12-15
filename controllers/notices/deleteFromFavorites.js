@@ -1,8 +1,10 @@
 const { errorHandler } = require("../../helpers/errorHandler");
+const { Users } = require("../../service/schemas/Users");
 
 const deleteFromFavorites = async (req, res) => {
-  const { user } = req;
+  const { userId } = req;
   const { noticeId } = req.params;
+  const user = await Users.findById(userId);
 
   const idx = user.favorites.indexOf(noticeId);
   if (idx === -1) {
