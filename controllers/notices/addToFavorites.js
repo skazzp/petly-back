@@ -1,4 +1,3 @@
-const { errorHandler } = require("../../helpers/errorHandler");
 const { Users } = require("../../service/schemas/Users");
 
 const addToFavorites = async (req, res) => {
@@ -6,7 +5,6 @@ const addToFavorites = async (req, res) => {
   const { noticeId } = req.params;
 
   const user = await Users.findById(userId);
-  console.log(user);
 
   const isAdded = user.favorites.includes(noticeId);
   if (isAdded) {
