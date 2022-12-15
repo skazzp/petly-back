@@ -253,3 +253,13 @@
     "data": []
 }
 ```
+
+Видалити персональний нотіс: DELETE - /api/notices/:noticeId
+Повертає об'єкт:
+```python
+{
+    "code": 200,
+    "status": "success",
+    "message": "Notice is removed"
+}
+```
