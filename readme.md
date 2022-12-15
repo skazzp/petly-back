@@ -112,3 +112,39 @@
     "page": 1
 }
 ```
+
+Отримати нотіс по ID: GET - /api/notices/:noticeId
+
+Повертає об'єкт:
+```python
+{
+    "code": 200,
+    "status": "success",
+    "data": {
+        "_id": "6399e0f49b156ec8b9e8d3dd",
+        "category": "sell",
+        "title": "some title",
+        "name": "some name",
+        "birthday": "2000-10-11T00:00:00.000Z",
+        "breed": "some breed",
+        "sex": "male",
+        "location": "Kyiv, Kyivska",
+        "photoURL": "photo URL",
+        "photoId": "photo id",
+        "comments": "comments",
+        "price": 100,
+        "owner": null
+    }
+}
+```
+
+Додати нотіс до обраних: GET - /api/notices/favorites/:noticeId
+Повертає об'єкт:
+```python
+{
+    "code": 200,
+    "status": "success",
+    "message": "Notice is added to favorites"
+}
+```
+
