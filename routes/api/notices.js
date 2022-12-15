@@ -10,7 +10,7 @@ const {
 const checkAuth = require("../../helpers/checkAuth");
 const {
   // schemaJoiValidator,
-  //  isValidId,
+  isValidId,
   isValidCategory,
 } = require("../../validation");
 
@@ -26,23 +26,19 @@ router.get(
   controllerNotices.getByCategory
 );
 
-router.get(
-  "/:noticeId",
-  // isValidId("noticeId"),
-  controllerNotices.getById
-);
+router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
 
 router.get(
   "/favorites/:noticeId",
-  // isValidId("noticeId"),
-  auth,
+  isValidId("noticeId"),
+  checkAuth,
   controllerNotices.addToFavorites
 );
 
 router.get("/favorites", auth, controllerNotices.getFavorites);
 router.delete(
   "/favorites/:noticeId",
-  // isValidId("noticeId"),
+  isValidId("noticeId"),
   auth,
   controllerNotices.deleteFromFavorites
 );
@@ -51,7 +47,7 @@ router.delete(
 
 router.delete(
   "/:noticeId",
-  // isValidId("noticeId"),
+  isValidId("noticeId"),
   auth,
   cleanImgMiddleware,
   controllerNotices.deletePersonalNotice
