@@ -8,11 +8,12 @@ const {
   cleanImgMiddleware,
 } = require("../../middlewares");
 const checkAuth = require("../../helpers/checkAuth");
-// const {
-//   schemaJoiValidator,
-//   isValidId,
-//   isValidCategory,
-// } = require("../../validators");
+const {
+  // schemaJoiValidator,
+  isValidId,
+  isValidCategory,
+} = require("../../validation");
+
 const { schemasJoiNotice } = require("../../service/schemas/Notice");
 
 const router = Router();
@@ -21,27 +22,23 @@ router.get("/", controllerNotices.getAll);
 
 router.get(
   "/category/:category",
-  // isValidCategory,
+  isValidCategory,
   controllerNotices.getByCategory
 );
 
-router.get(
-  "/:noticeId",
-  // isValidId("noticeId"),
-  controllerNotices.getById
-);
+router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
 
+router.get("/fav", checkAuth, controllerNotices.getFavorites);
 router.get(
   "/favorites/:noticeId",
-  // isValidId("noticeId"),
-  auth,
+  isValidId("noticeId"),
+  checkAuth,
   controllerNotices.addToFavorites
 );
 
-router.get("/favorites", auth, controllerNotices.getFavorites);
 router.delete(
   "/favorites/:noticeId",
-  // isValidId("noticeId"),
+  isValidId("noticeId"),
   auth,
   controllerNotices.deleteFromFavorites
 );
@@ -50,7 +47,7 @@ router.delete(
 
 router.delete(
   "/:noticeId",
-  // isValidId("noticeId"),
+  isValidId("noticeId"),
   auth,
   cleanImgMiddleware,
   controllerNotices.deletePersonalNotice
