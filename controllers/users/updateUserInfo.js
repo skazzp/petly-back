@@ -1,4 +1,4 @@
-const updateInfo = require("../../service/modules/updateInfo");
+const updateInfo = require("../../service/modules/currentUser");
 
 const updateUserInfo = async (req, res, next) => {
   try {
