@@ -1,12 +1,17 @@
-const { errorHandler } = require("../../helpers/errorHandler");
+const { Users } = require("../../service/schemas/Users");
 
 const addToFavorites = async (req, res) => {
-  const { user } = req;
+  const { userId } = req;
   const { noticeId } = req.params;
+
+  const user = await Users.findById(userId);
 
   const isAdded = user.favorites.includes(noticeId);
   if (isAdded) {
-    throw errorHandler(409, "Notice is already added.");
+    res.json({
+      code: 409,
+      message: "Notice is already added.",
+    });
   }
   user.favorites.push(noticeId);
 

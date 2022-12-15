@@ -6,7 +6,7 @@
   кожним PR та виправляти всі помилки лінтера
 - `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
 
-### Routs: Auth
+### Routes: Auth
 
 - BASEURL = https://petly-bc26.cyclic.app/
 - Register = `/api/users/signup`;
@@ -14,11 +14,11 @@
 
 ```python
   {
-  "password": "qwerty123",       [required, type: "String"]
-  "email": "buival@gmail.com",   [required, type: "String"]
-  "city": "Kiev, Shevchenko 38", [required, type: "String", exemple: "sity, street"]
-  "phone": "25665225585",        [required, type: "String"]
-  "name": "Andrii"               [required, type: "String"]
+    "password": "qwerty123",       [required, type: "String"]
+    "email": "buival@gmail.com",   [required, type: "String"]
+    "city": "Kiev, Shevchenko 38", [required, type: "String", exemple: "sity, street"]
+    "phone": "25665225585",        [required, type: "String"]
+    "name": "Andrii"               [required, type: "String"]
   }
 ```
 
@@ -58,10 +58,93 @@
 - Logout = `/api/users/logout`;
 - Перевіряє Token, та якщо він є - видаляє його з бази данних:
 
-### Routs: Sponsors and News
+### Routes: Sponsors and News
 
 - Sponsors = `/api/info/sponsors`;
 - Повертає масив об'єктів з партнерами.
 
 - News = `/api/info/news`;
 - Повертає масив об'єктів з новинами.
+
+### Routes: Notices
+
+Отримати всі пости: GET - /api/notices
+
+Повертає об'єкт:
+```python
+  {
+    "code": 200,
+    "status": "success",
+    "data": [],
+    "totalPages": 1,
+    "page": 1
+  }
+```
+Додати пост: POST - /api/notices
+
+- Приймає об'єкт з полями:
+```python
+  {
+    "category": "sell",
+    "title": "some title 3",
+    "name": "some name 3",
+    "birthday": "2000-10-11",
+    "breed": "some breed 3",
+    "sex": "male",
+    "location": "Kyiv, Kyivska 3",
+    "photoURL": "photo URL 3",
+    "photoId": "photo id 3",
+    "comments": "comments 3333333",
+    "price": 100
+  }
+```
+
+Отримати пости по категоріям: GET - /api/notices/category/:category
+
+Категорії: ["sell", "lost-found", "for-free"]
+Повертає об'єкт:
+```python
+{
+    "code": 200,
+    "status": "success",
+    "data": [],
+    "totalPages": 0,
+    "page": 1
+}
+```
+
+Отримати нотіс по ID: GET - /api/notices/:noticeId
+
+Повертає об'єкт:
+```python
+{
+    "code": 200,
+    "status": "success",
+    "data": {
+        "_id": "6399e0f49b156ec8b9e8d3dd",
+        "category": "sell",
+        "title": "some title",
+        "name": "some name",
+        "birthday": "2000-10-11T00:00:00.000Z",
+        "breed": "some breed",
+        "sex": "male",
+        "location": "Kyiv, Kyivska",
+        "photoURL": "photo URL",
+        "photoId": "photo id",
+        "comments": "comments",
+        "price": 100,
+        "owner": null
+    }
+}
+```
+
+Додати нотіс до обраних: GET - /api/notices/favorites/:noticeId
+Повертає об'єкт:
+```python
+{
+    "code": 200,
+    "status": "success",
+    "message": "Notice is added to favorites"
+}
+```
+

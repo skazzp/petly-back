@@ -7,47 +7,47 @@ const {
   upload,
   cleanImgMiddleware,
 } = require("../../middlewares");
-// const {
-//   schemaJoiValidator,
-//   isValidId,
-//   isValidCategory,
-// } = require("../../validators");
+const checkAuth = require("../../helpers/checkAuth");
+const {
+  // schemaJoiValidator,
+  isValidId,
+  isValidCategory,
+} = require("../../validation");
+
 const { schemasJoiNotice } = require("../../service/schemas/Notice");
 
 const router = Router();
 
+router.get("/", controllerNotices.getAll);
+
 router.get(
   "/category/:category",
-  // isValidCategory,
+  isValidCategory,
   controllerNotices.getByCategory
 );
 
-router.get(
-  "/:noticeId",
-  // isValidId("noticeId"),
-  controllerNotices.getById
-);
+router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
 
+router.get("/fav", checkAuth, controllerNotices.getFavorites);
 router.get(
   "/favorites/:noticeId",
-  // isValidId("noticeId"),
-  auth,
+  isValidId("noticeId"),
+  checkAuth,
   controllerNotices.addToFavorites
 );
 
-router.get("/favorites", auth, controllerNotices.getFavorites);
 router.delete(
   "/favorites/:noticeId",
-  // isValidId("noticeId"),
+  isValidId("noticeId"),
   auth,
   controllerNotices.deleteFromFavorites
 );
 
-router.get("/personal", auth, controllerNotices.getPersonalNotices);
+// router.get("/personal", auth, controllerNotices.getPersonalNotices);
 
 router.delete(
   "/:noticeId",
-  // isValidId("noticeId"),
+  isValidId("noticeId"),
   auth,
   cleanImgMiddleware,
   controllerNotices.deletePersonalNotice
@@ -55,9 +55,9 @@ router.delete(
 
 router.post(
   "/",
-  auth,
-  upload.single("image"),
-  uploadMiddleware,
+  checkAuth,
+  // upload.single("image"),
+  // uploadMiddleware,
   // schemaJoiValidator(schemasJoiNotice.addSchema),
   controllerNotices.addPersonalNotice
 );

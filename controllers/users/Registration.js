@@ -13,7 +13,6 @@ const Regisration = async (req, res, next) => {
         expiresIn: "30d",
       }
     );
-    console.log(token);
 
     await updateUser(user._id, { token: token });
     const { password, ...userData } = user._doc;

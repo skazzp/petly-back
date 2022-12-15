@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const { User } = require("../service/schemas/Users");
+const { Users } = require("../service/schemas/Users");
 const { errorHandler } = require("../helpers/errorHandler");
 
 const auth = async (req, res, next) => {
@@ -13,9 +13,10 @@ const auth = async (req, res, next) => {
   }
 
   try {
-    const { id } = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(id);
+    const { _id } = jwt.decode(token, process.env.JWT_SECRET);
 
+    const user = await Users.findById(_id);
+    console.log(user);
     if (!user?.token) {
       next(errorHandler(401, "Not authorized"));
     }

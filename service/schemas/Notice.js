@@ -59,7 +59,7 @@ const noticeSchema = new Schema(
     },
     owner: {
       type: Schema.Types.ObjectId,
-      ref: "user",
+      ref: "users",
       required: [true, "Owner is required"],
     },
   },
