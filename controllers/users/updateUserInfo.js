@@ -1,8 +1,8 @@
-const updateInfo = require("../../service/modules/currentUser");
+const { updateInfo } = require("../../service/modules/currentUser");
 
 const updateUserInfo = async (req, res, next) => {
   try {
-    const user = await updateInfo(req.params.id, req.body);
+    const user = await updateInfo(req);
 
     if (!user) {
       res.json({

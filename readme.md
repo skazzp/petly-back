@@ -106,6 +106,24 @@
 }
 ```
 
+### Routes: UserUpdate
+
+- updateUserInfo = `method PATCH`, `/api/usersinfo/update`
+- Перевіряє Token, та приймає об'єкт з полями
+
+```python
+{
+    "email": "petkochilo@gmail.com",
+    "city": "New Yourk, Shevchenko 38",
+    "phone": "+38455698526",
+    "name": "petkchilo",
+    "birthday": "2015.07.11",
+    "avatarURL": "https://avatars.dzeninfra.ru/get-zen_doc/scale_1200"
+}
+```
+
+- Повертає новий об'єкт: User
+
 ### Routes: UserPets
 
 - getAllPets = `method GET`, `/api/pets/`

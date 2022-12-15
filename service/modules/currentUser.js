@@ -5,8 +5,26 @@ const getInfo = async (req) => {
   return user;
 };
 
-const updateInfo = (id, body) => {
-  return Users.findByIdAndUpdate({ _id: id }, body, { new: true });
+const updateInfo = (req) => {
+  let birthday = "";
+  if (req.body.birthday !== "") {
+    birthday = new Date(req.body.birthday);
+  }
+
+  console.log(req.userId);
+  const user = Users.findByIdAndUpdate(
+    { _id: req.userId },
+    {
+      email: req.body.email,
+      name: req.body.name,
+      phone: req.body.phone,
+      city: req.body.city,
+      avatarURL: req.body.avatarURL,
+      birthday: birthday,
+    },
+    { new: true }
+  );
+  return user;
 };
 
 module.exports = { getInfo, updateInfo };

@@ -5,6 +5,6 @@ const updateUserInfo = require("../../controllers/users/updateUserInfo");
 const checkAuth = require("../../helpers/checkAuth");
 
 router.get("/", checkAuth, getCurrentUser);
-router.patch("/update/:id", updateUserInfo);
+router.patch("/update", checkAuth, updateUserInfo);
 
 module.exports = router;
