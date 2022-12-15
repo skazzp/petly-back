@@ -1,5 +1,4 @@
 const { Notice } = require("../../service/schemas/Notice");
-const { errorHandler } = require("../../helpers/errorHandler");
 
 const getById = async (req, res) => {
   const { noticeId } = req.params;
@@ -9,7 +8,11 @@ const getById = async (req, res) => {
   ).populate("owner", "email phone");
 
   if (!notice) {
-    throw errorHandler(404, "Not found");
+    res.json({
+      code: 404,
+      message: "Not found",
+    });
+    return;
   }
 
   res.json({

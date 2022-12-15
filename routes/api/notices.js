@@ -2,7 +2,6 @@ const { Router } = require("express");
 
 const { controllerNotices } = require("../../controllers");
 const {
-  auth,
   uploadMiddleware,
   upload,
   cleanImgMiddleware,
@@ -44,10 +43,11 @@ router.delete(
 router.get("/personal", checkAuth, controllerNotices.getPersonalNotices);
 
 router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
+
 router.delete(
   "/:noticeId",
   isValidId("noticeId"),
-  auth,
+  checkAuth,
   cleanImgMiddleware,
   controllerNotices.deletePersonalNotice
 );
