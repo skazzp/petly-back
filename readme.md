@@ -234,4 +234,22 @@
     "page": 1
 }
 ```
+Видалити нотіс з обраних: DELETE - /api/notices/favorites/:noticeId
+Повертає об'єкт:
+```python
+{
+    "code": 200,
+    "status": "success",
+    "message": "Notice is deleted from favorites"
+}
+```
 
+Отримати персональні нотіси: GET - /api/notices/favorites/personal
+Повертає об'єкт:
+```python
+{
+    "code": 200,
+    "status": "success",
+    "data": []
+}
+```
