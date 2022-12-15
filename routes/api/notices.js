@@ -8,11 +8,12 @@ const {
   cleanImgMiddleware,
 } = require("../../middlewares");
 const checkAuth = require("../../helpers/checkAuth");
-// const {
-//   schemaJoiValidator,
-//   isValidId,
-//   isValidCategory,
-// } = require("../../validators");
+const {
+  // schemaJoiValidator,
+  isValidId,
+  isValidCategory,
+} = require("../../validation");
+
 const { schemasJoiNotice } = require("../../service/schemas/Notice");
 
 const router = Router();
@@ -21,15 +22,11 @@ router.get("/", controllerNotices.getAll);
 
 router.get(
   "/category/:category",
-  // isValidCategory,
+  isValidCategory,
   controllerNotices.getByCategory
 );
 
-router.get(
-  "/:noticeId",
-  // isValidId("noticeId"),
-  controllerNotices.getById
-);
+router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
 
 router.get(
   "/favorites/:noticeId",
