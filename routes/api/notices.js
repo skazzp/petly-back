@@ -41,9 +41,9 @@ router.delete(
   controllerNotices.deleteFromFavorites
 );
 
-router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
-// router.get("/personal", auth, controllerNotices.getPersonalNotices);
+router.get("/personal", checkAuth, controllerNotices.getPersonalNotices);
 
+router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
 router.delete(
   "/:noticeId",
   isValidId("noticeId"),
