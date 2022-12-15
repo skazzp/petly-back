@@ -30,7 +30,7 @@ router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
 
 router.get(
   "/favorites/:noticeId",
-  // isValidId("noticeId"),
+  isValidId("noticeId"),
   auth,
   controllerNotices.addToFavorites
 );
@@ -38,7 +38,7 @@ router.get(
 router.get("/favorites", auth, controllerNotices.getFavorites);
 router.delete(
   "/favorites/:noticeId",
-  // isValidId("noticeId"),
+  isValidId("noticeId"),
   auth,
   controllerNotices.deleteFromFavorites
 );
@@ -47,7 +47,7 @@ router.delete(
 
 router.delete(
   "/:noticeId",
-  // isValidId("noticeId"),
+  isValidId("noticeId"),
   auth,
   cleanImgMiddleware,
   controllerNotices.deletePersonalNotice
