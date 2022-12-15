@@ -98,3 +98,17 @@
     "price": 100
   }
 ```
+
+Отримати пости по категоріям: GET - /api/notices/category/:category
+
+Категорії: ["sell", "lost-found", "for-free"]
+Повертає об'єкт:
+```python
+{
+    "code": 200,
+    "status": "success",
+    "data": [],
+    "totalPages": 0,
+    "page": 1
+}
+```
