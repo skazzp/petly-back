@@ -38,6 +38,11 @@ const userShema = mongoose.Schema(
     birthday: {
       type: Date,
     },
+    favorites: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "notice",
+      default: [],
+    },
   },
   {
     timestamps: true,

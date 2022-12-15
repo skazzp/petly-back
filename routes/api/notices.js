@@ -31,7 +31,7 @@ router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
 router.get(
   "/favorites/:noticeId",
   isValidId("noticeId"),
-  auth,
+  checkAuth,
   controllerNotices.addToFavorites
 );
 
