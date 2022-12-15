@@ -1,7 +1,7 @@
 const { Users } = require("../schemas/Users");
 
-const getInfo = (id) => {
-  return Users.findOne({ _id: id });
+const getInfo = (req) => {
+  return Users.findOne({ _id: req.userId });
 };
 
 module.exports = getInfo;

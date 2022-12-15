@@ -9,7 +9,7 @@ const petSchema = new Schema(
       required: [true, "Please, add a name"],
     },
     birthday: {
-      type: Date,
+      type: String,
       default: Date.now(),
     },
     breed: {
@@ -30,7 +30,7 @@ const petSchema = new Schema(
     },
     owner: {
       type: ObjectId,
-      ref: "user",
+      ref: "users",
       required: true,
     },
   },
