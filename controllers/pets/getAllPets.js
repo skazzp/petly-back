@@ -1,8 +1,7 @@
-const Pet = require("../../service/schemas/Pet");
+const { getPets } = require("../../service/modules/pets");
 
 const getAllPets = async (req, res) => {
-  const { ownerId } = req.params;
-  const pet = await Pet.findById(ownerId).populate("owner");
+  const pet = await getPets(req);
 
   res.status(200).json({
     status: "success",

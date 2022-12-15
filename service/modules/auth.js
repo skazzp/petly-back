@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const gravatar = require("gravatar");
 const { Users } = require("../schemas/Users.js");
-const getUserOne = async (req) => {
+const getUserOne = async (req, res) => {
   const user = await Users.findOne({ email: req.body.email });
   if (!user) {
     return res.status(401).json({
@@ -36,7 +36,7 @@ const addUser = async (req) => {
   return user;
 };
 
-const getUserById = async (req) => {
+const getUserById = async (req, res) => {
   const user = await Users.findById({ _id: req.userId });
   if (!user) {
     return res.status(401).json({

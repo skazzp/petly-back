@@ -58,6 +58,78 @@
 - Logout = `/api/users/logout`;
 - Перевіряє Token, та якщо він є - видаляє його з бази данних:
 
+### Routes: CurrentUser
+
+- getUserInfo = `get`, `/api/usersinfo/`
+- Перевіряє Token, та якщо він є, повертає об'єкт User
+
+### Routes: UserPets
+
+- getAllPets = `get`, `/api/pets/`
+- Повертає масив об'єктів з тваринами користувача:
+
+```python
+"pets": [
+            {
+                "_id": "639a174ec17b65142cc17154",
+                "name": "barbos",
+                "birthday": "Invalid Date",
+                "breed": "labrador",
+                "photoURL": "https://www.novochag.ru/upload/img_cache/cdb/cdb894b14356d88d490e59b3199e3845_ce_2352x1565x37x0.jpg",
+                "photoId": "",
+                "comments": "fjghjfkjoihjoifjyihjmfiotymbmybmygbmyfbpoymbkymbtm",
+                "owner": "6399a977c2931ae12be83fdd",
+                "createdAt": "2022-12-14T18:34:54.619Z",
+                "updatedAt": "2022-12-14T18:34:54.619Z"
+            },
+            {
+                "_id": "639a1d9fdb522ff63e751620",
+                "name": "barbos",
+                "birthday": "Invalid Date",
+                "breed": "labrador",
+                "photoURL": "https://www.novochag.ru/upload/img_cache/cdb/cdb894b14356d88d490e59b3199e3845_ce_2352x1565x37x0.jpg",
+                "photoId": "",
+                "comments": "fjghjfkjoihjoifjyihjmfiotymbmybmygbmyfbpoymbkymbtm",
+                "category": "My pets",
+                "owner": "6399a977c2931ae12be83fdd",
+                "createdAt": "2022-12-14T19:01:51.479Z",
+                "updatedAt": "2022-12-14T19:01:51.479Z"
+            },
+]
+
+```
+
+- createPat = `post`,`/api/pets/`
+- Приймає об'єкт з полями:
+
+```python
+  {
+    "name": "bimba",
+    "birthday": "2015.12.07",
+    "breed": "labrador",
+    "photoURL": "https://www.novochag.ru/upload/img_cache/cdb/cdb894b14356d88d490e59b3199e3845_ce_2352x1565x37x0.jpg",
+    "photoId": "njnjhj",
+    "comments":"fjghjfkjoihjoifjyihjmfiotymbmybmygbmyfbpoymbkymbtm"
+}
+```
+
+- Повертає об'єкт з новою твариною:
+
+```python
+{
+    "name": "bimba",
+    "birthday": "Mon Dec 07 2015 00:00:00 GMT+0100 (за центральноєвропейським стандартним часом)",
+    "breed": "labrador",
+    "photoURL": "https://www.novochag.ru/upload/img_cache/cdb/cdb894b14356d88d490e59b3199e3845_ce_2352x1565x37x0.jpg",
+    "photoId": "njnjhj",
+    "comments": "fjghjfkjoihjoifjyihjmfiotymbmybmygbmyfbpoymbkymbtm",
+    "owner": "6399a977c2931ae12be83fdd",
+    "_id": "639b03daf61a81ebdc5ee19f",
+    "createdAt": "2022-12-15T11:24:10.750Z",
+    "updatedAt": "2022-12-15T11:24:10.750Z"
+}
+```
+
 ### Routes: Sponsors and News
 
 - Sponsors = `/api/info/sponsors`;
@@ -71,6 +143,7 @@
 Отримати всі пости: GET - /api/notices
 
 Повертає об'єкт:
+
 ```python
   {
     "code": 200,
@@ -80,9 +153,11 @@
     "page": 1
   }
 ```
+
 Додати пост: POST - /api/notices
 
 - Приймає об'єкт з полями:
+
 ```python
   {
     "category": "sell",
