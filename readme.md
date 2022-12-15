@@ -223,3 +223,15 @@
 }
 ```
 
+Отримати всі оборані нотіси: GET - /api/notices/favorites
+Повертає об'єкт:
+```python
+{
+    "code": 200,
+    "status": "success",
+    "data": [],
+    "totalPages": 1,
+    "page": 1
+}
+```
+
