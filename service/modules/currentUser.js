@@ -8,10 +8,8 @@ const getInfo = async (req) => {
 const updateInfo = (req) => {
   let birthday = "";
   if (req.body.birthday !== "") {
-    birthday = new Date(req.body.birthday);
+    birthday = new Date(req.body.birthday).toISOString().split("T")[0];
   }
-
-  console.log(req.userId);
   const user = Users.findByIdAndUpdate(
     { _id: req.userId },
     {

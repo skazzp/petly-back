@@ -11,10 +11,11 @@ const updateUserInfo = async (req, res, next) => {
         message: "Not found",
       });
     } else {
+      const { password, ...userData } = user._doc;
       res.json({
         status: "success",
         code: 200,
-        data: { user },
+        data: { userData },
         message: "User information updated successfully",
       });
     }
