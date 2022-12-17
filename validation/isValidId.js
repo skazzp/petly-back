@@ -1,13 +1,13 @@
-const { isValidObjectId } = require("mongoose");
+const { isValidObjectId } = require('mongoose');
 
-const { errorHandler } = require("../helpers/errorHandler");
+const errorHandler = require('../helpers/errorHandler');
 
-const isValidId = (idParam) => {
+const isValidId = idParam => {
   return (req, res, next) => {
     const isCorrectId = isValidObjectId(req.params[idParam]);
 
     if (!isCorrectId) {
-      const error = errorHandler(400, "ID is not correct");
+      const error = errorHandler(400, 'ID is not correct');
       next(error);
     }
     next();

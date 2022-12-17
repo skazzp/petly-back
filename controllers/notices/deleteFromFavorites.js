@@ -1,5 +1,5 @@
-const { errorHandler } = require("../../helpers/errorHandler");
-const { Users } = require("../../service/schemas/Users");
+const errorHandler = require('../../helpers/errorHandler');
+const { Users } = require('../../service/schemas/Users');
 
 const deleteFromFavorites = async (req, res) => {
   const { userId } = req;
@@ -8,7 +8,7 @@ const deleteFromFavorites = async (req, res) => {
 
   const idx = user.favorites.indexOf(noticeId);
   if (idx === -1) {
-    throw errorHandler(400, "Favorite is not found");
+    throw errorHandler(400, 'Favorite is not found');
   }
 
   user.favorites.splice(idx, 1);
@@ -16,8 +16,8 @@ const deleteFromFavorites = async (req, res) => {
 
   res.json({
     code: 200,
-    status: "success",
-    message: "Notice is deleted from favorites",
+    status: 'success',
+    message: 'Notice is deleted from favorites',
   });
 };
 
