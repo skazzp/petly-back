@@ -217,7 +217,7 @@
 
 Додати пост: `method POST` - `/api/notices`
 
-- Приймає об'єкт з полями:
+- Приймає об'єкт form-data з полями:
 
 ```python
   {
@@ -232,6 +232,7 @@
     "photoId": "photo id 3",
     "comments": "comments 3333333",
     "price": 100
+    "image": File img.jpg
   }
 ```
 
