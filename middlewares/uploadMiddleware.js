@@ -5,18 +5,18 @@ const uploadMiddleware = async (req, res, next) => {
   if (!req.file) {
     delete req.body.image;
     req.body.photoURL =
-      "http://res.cloudinary.com/dxxsrtjlb/image/upload/v1668769764/pets/pet_6375342f5b5c2cd38ef0320b_1668769763834.png";
+      "https://res.cloudinary.com/dnkfxtdl2/image/upload/v1670963706/cld-sample.jpg";
     req.body.photoId = "";
     return next();
   }
 
   const { path: tempUpload, originalname } = req.file;
   const format = originalname.split(".").pop();
-  const { _id } = req.user;
+  const { userId } = req;
 
   const folder = req.baseUrl.split("/")[3];
 
-  const id = `${folder.slice(0, -1) + "_" + _id + "_" + Date.now()}`;
+  const id = `${folder.slice(0, -1) + "_" + userId + "_" + Date.now()}`;
 
   try {
     const { resultUrl, resultId } = await cloudUpload(

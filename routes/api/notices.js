@@ -8,7 +8,7 @@ const {
 } = require("../../middlewares");
 const checkAuth = require("../../helpers/checkAuth");
 const {
-  // schemaJoiValidator,
+  schemaJoiValidator,
   isValidId,
   isValidCategory,
 } = require("../../validation");
@@ -55,9 +55,9 @@ router.delete(
 router.post(
   "/",
   checkAuth,
-  // upload.single("image"),
-  // uploadMiddleware,
-  // schemaJoiValidator(schemasJoiNotice.addSchema),
+  upload.single("image"),
+  uploadMiddleware,
+  schemaJoiValidator(schemasJoiNotice.addSchema),
   controllerNotices.addPersonalNotice
 );
 
