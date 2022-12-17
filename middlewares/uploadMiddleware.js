@@ -4,7 +4,7 @@ const { cloudUpload } = require("../service/modules/cloudinaryService");
 const uploadMiddleware = async (req, res, next) => {
   if (!req.file) {
     req.body.photoURL =
-      "https://res.cloudinary.com/dnkfxtdl2/image/upload/v1670963706/cld-sample.jpg";
+      "https://res.cloudinary.com/dnkfxtdl2/image/upload/v1671266714/Catdog_uhpgig.jpg";
     req.body.photoId = "";
     return next();
   }
