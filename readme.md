@@ -1,3 +1,5 @@
+Використайте [Swagger Team-project PETLY](https://ihumentsev.github.io/swaggerAPI/) для перевірки маршрутів, та працездатності API.
+
 ### Команди:
 
 - `npm start` &mdash; старт сервера в режимі production
@@ -237,6 +239,7 @@
 ```
 
 Повертає об'єкт з полями:
+
 ```pyton
 {
     "code": 201,
