@@ -1,8 +1,8 @@
-const updateInfo = require("../../service/modules/updateInfo");
+const { updateInfo } = require("../../service/modules/currentUser");
 
 const updateUserInfo = async (req, res, next) => {
   try {
-    const user = await updateInfo(req.params.id, req.body);
+    const user = await updateInfo(req);
 
     if (!user) {
       res.json({
@@ -11,10 +11,11 @@ const updateUserInfo = async (req, res, next) => {
         message: "Not found",
       });
     } else {
+      const { password, ...userData } = user._doc;
       res.json({
         status: "success",
         code: 200,
-        data: { user },
+        data: { userData },
         message: "User information updated successfully",
       });
     }
