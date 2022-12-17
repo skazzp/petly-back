@@ -1,5 +1,4 @@
 const { Notice } = require("../../service/schemas/Notice");
-const { errorHandler } = require("../../helpers/errorHandler");
 
 const getByCategory = async (req, res) => {
   const { category } = req.params;
@@ -12,7 +11,10 @@ const getByCategory = async (req, res) => {
   }).populate("owner", "email phone");
 
   if (!notices) {
-    throw errorHandler(404, "Not found");
+    res.json({
+      code: 404,
+      message: "Not found",
+    });
   }
 
   const total = await Notice.find({ category }).count();
