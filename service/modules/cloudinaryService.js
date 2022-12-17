@@ -1,8 +1,5 @@
 const cloudinary = require("cloudinary").v2;
-
-const path = require("path");
-const configPath = path.join(__dirname, "..", "config", ".env");
-require("dotenv").config({ path: configPath });
+require("dotenv").config();
 
 cloudinary.config({
   cloud_name: "dnkfxtdl2",
@@ -11,29 +8,21 @@ cloudinary.config({
 });
 
 const cloudUpload = async (uploadPath, public_id, folder, format) => {
-  try {
-    const resultOfUpload = await cloudinary.uploader.upload(uploadPath, {
-      public_id,
-      folder,
-      format,
-      transformation: { width: 350, height: 350, crop: "fill" },
-    });
+  const resultOfUpload = await cloudinary.uploader.upload(uploadPath, {
+    public_id,
+    folder,
+    format,
+    transformation: { width: 350, height: 350, crop: "fill" },
+  });
 
-    const resultUrl = resultOfUpload.url;
-    const resultId = resultOfUpload.public_id;
+  const resultUrl = resultOfUpload.url;
+  const resultId = resultOfUpload.public_id;
 
-    return { resultUrl, resultId };
-  } catch (error) {
-    throw error;
-  }
+  return { resultUrl, resultId };
 };
 
 const cloudDelete = async (photoId) => {
-  try {
-    await cloudinary.uploader.destroy(photoId);
-  } catch (error) {
-    throw error;
-  }
+  await cloudinary.uploader.destroy(photoId);
 };
 
 module.exports = { cloudUpload, cloudDelete };

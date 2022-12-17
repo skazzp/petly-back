@@ -3,7 +3,6 @@ const { cloudUpload } = require("../service/modules/cloudinaryService");
 
 const uploadMiddleware = async (req, res, next) => {
   if (!req.file) {
-    delete req.body.image;
     req.body.photoURL =
       "https://res.cloudinary.com/dnkfxtdl2/image/upload/v1670963706/cld-sample.jpg";
     req.body.photoId = "";
@@ -15,8 +14,9 @@ const uploadMiddleware = async (req, res, next) => {
   const { userId } = req;
 
   const folder = req.baseUrl.split("/")[3];
+  console.log("folder", folder);
 
-  const id = `${folder.slice(0, -1) + "_" + userId + "_" + Date.now()}`;
+  const id = `${userId + "_" + Date.now()}`;
 
   try {
     const { resultUrl, resultId } = await cloudUpload(
@@ -33,7 +33,7 @@ const uploadMiddleware = async (req, res, next) => {
 
     next();
   } catch (error) {
-    throw error;
+    console.log(error);
   } finally {
     await fs.unlink(req.file.path);
   }
