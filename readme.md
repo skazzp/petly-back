@@ -235,6 +235,31 @@
   }
 ```
 
+Повертає об'єкт з полями:
+```pyton
+{
+    "code": 201,
+    "status": "success",
+    "data": {
+        "category": "sell",
+        "title": "some title 3",
+        "name": "some name 3",
+        "birthday": "2000-10-11T00:00:00.000Z",
+        "breed": "some breed 3",
+        "sex": "male",
+        "location": "Kyiv, Kyivska 3",
+        "photoURL": "http://res.cloudinary.com/dnkfxtdl2/image/upload/v1671265484/6399e3c3c78610f9017f6e5e_1671265481773.jpg",
+        "photoId": "6399e3c3c78610f9017f6e5e_1671265481773",
+        "comments": "comments 3333333",
+        "price": 100,
+        "owner": "6399e3c3c78610f9017f6e5e",
+        "_id": "639d7cca384c83a001d40894",
+        "createdAt": "2022-12-17T08:24:42.939Z",
+        "updatedAt": "2022-12-17T08:24:42.939Z"
+    }
+}
+```
+
 Отримати пости по категоріям: `method GET` - `/api/notices/category/:category`
 
 Категорії: ["sell", "lost-found", "for-free"]
