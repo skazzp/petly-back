@@ -15,6 +15,6 @@ router.post(
   validator(schemaCreatePet),
   errorHandler(createPetController)
 );
-router.delete("/:id", removePet);
+router.delete("/:id", checkAuth, removePet);
 
 module.exports = router;

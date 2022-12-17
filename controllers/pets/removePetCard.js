@@ -1,4 +1,4 @@
-const deletePet = require("../../service/modules/pets");
+const { deletePet } = require("../../service/modules/pets");
 
 const removePet = async (req, res, next) => {
   try {
