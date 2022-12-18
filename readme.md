@@ -340,7 +340,7 @@
 }
 ```
 
-Отримати персональні нотіси:`method GET` - `/api/notices/favorites/personal`
+Отримати персональні нотіси:`method GET` - `/api/notices/personal`
 Повертає об'єкт:
 
 ```python
