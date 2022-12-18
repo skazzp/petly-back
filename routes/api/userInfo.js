@@ -14,7 +14,7 @@ router.patch(
     console.log(123);
     next();
   },
-  uploadMiddleware,
+  // uploadMiddleware,
   (req, res, next) => {
     console.log(444);
     next();
