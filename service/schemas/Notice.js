@@ -74,7 +74,7 @@ const addSchema = Joi.object({
     .required(),
   title: Joi.string().min(2).max(48).required(),
   sex: Joi.string()
-    .allow("male", "female")
+    .valid("male", "female")
     .required()
     .error(() => {
       return {
