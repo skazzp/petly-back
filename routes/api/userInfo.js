@@ -10,15 +10,15 @@ router.patch(
   '/update',
   checkAuth,
   upload.single('image'),
-  (req, res, next) => {
-    console.log(123);
-    next();
-  },
-  // uploadMiddleware,
-  (req, res, next) => {
-    console.log(444);
-    next();
-  },
+  // (req, res, next) => {
+  //   console.log(req);
+  //   next();
+  // },
+  uploadMiddleware,
+  // (req, res, next) => {
+  //   console.log(444);
+  //   next();
+  // },
   updateUserInfo
 );
 
