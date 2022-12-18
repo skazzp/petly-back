@@ -351,7 +351,7 @@
 }
 ```
 
-Видалити персональний нотіс: `method DELETE` - `/api/notices/:noticeId`
+Видалити персональний нотіс: `method DELETE` - `/api/notices/delete/:noticeId`
 Повертає об'єкт:
 
 ```python
