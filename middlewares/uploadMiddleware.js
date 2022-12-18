@@ -1,4 +1,4 @@
-const fs = require('fs/promises');
+// const fs = require('fs/promises');
 const { cloudUpload } = require('../service/modules/cloudinaryService');
 
 const uploadMiddleware = async (req, res, next) => {
@@ -30,6 +30,7 @@ const uploadMiddleware = async (req, res, next) => {
   } catch (error) {
     console.log(error);
   }
+  // пофиксить, чтоб файл удалялся на клаудинари в тмп
   // finally {
   //    await fs.unlink(req.file.path);
   // }

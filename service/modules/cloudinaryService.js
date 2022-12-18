@@ -1,18 +1,18 @@
-const cloudinary = require("cloudinary").v2;
-require("dotenv").config();
+const cloudinary = require('cloudinary').v2;
+require('dotenv').config();
 
 cloudinary.config({
-  cloud_name: "dnkfxtdl2",
+  cloud_name: 'dnkfxtdl2',
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const cloudUpload = async (uploadPath, public_id, folder, format) => {
+const cloudUpload = async (uploadPath, id, folder, format) => {
   const resultOfUpload = await cloudinary.uploader.upload(uploadPath, {
-    public_id,
+    public_id: id,
     folder,
     format,
-    transformation: { width: 350, height: 350, crop: "fill" },
+    transformation: { width: 350, height: 350, crop: 'fill' },
   });
 
   const resultUrl = resultOfUpload.url;
@@ -21,7 +21,7 @@ const cloudUpload = async (uploadPath, public_id, folder, format) => {
   return { resultUrl, resultId };
 };
 
-const cloudDelete = async (photoId) => {
+const cloudDelete = async photoId => {
   await cloudinary.uploader.destroy(photoId);
 };
 
