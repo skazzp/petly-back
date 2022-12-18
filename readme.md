@@ -217,7 +217,7 @@
   }
 ```
 
-Додати пост: `method POST` - `/api/notices`
+Додати пост: `method POST` - `/api/notices/create`
 
 - Приймає об'єкт form-data з полями:
 
