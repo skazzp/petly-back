@@ -329,7 +329,7 @@
 }
 ```
 
-Видалити нотіс з обраних: `method DELETE` - `/api/notices/favorites/:noticeId`
+Видалити нотіс з обраних: `method DELETE` - `/api/notices/favorites/delete/:noticeId`
 Повертає об'єкт:
 
 ```python
