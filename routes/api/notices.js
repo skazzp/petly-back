@@ -34,7 +34,7 @@ router.get(
 );
 
 router.delete(
-  "/favorites/:noticeId",
+  "/favorites/delete/:noticeId",
   isValidId("noticeId"),
   checkAuth,
   controllerNotices.deleteFromFavorites
