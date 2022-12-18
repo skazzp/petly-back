@@ -1,3 +1,5 @@
+Використайте [Swagger Team-project PETLY](https://ihumentsev.github.io/swaggerAPI/) для перевірки маршрутів, та працездатності API.
+
 ### Команди:
 
 - `npm start` &mdash; старт сервера в режимі production
@@ -215,7 +217,7 @@
   }
 ```
 
-Додати пост: `method POST` - `/api/notices`
+Додати пост: `method POST` - `/api/notices/create`
 
 - Приймає об'єкт form-data з полями:
 
@@ -237,6 +239,7 @@
 ```
 
 Повертає об'єкт з полями:
+
 ```pyton
 {
     "code": 201,
@@ -326,7 +329,7 @@
 }
 ```
 
-Видалити нотіс з обраних: `method DELETE` - `/api/notices/favorites/:noticeId`
+Видалити нотіс з обраних: `method DELETE` - `/api/notices/favorites/delete/:noticeId`
 Повертає об'єкт:
 
 ```python
@@ -337,7 +340,7 @@
 }
 ```
 
-Отримати персональні нотіси:`method GET` - `/api/notices/favorites/personal`
+Отримати персональні нотіси:`method GET` - `/api/notices/personal`
 Повертає об'єкт:
 
 ```python
@@ -348,7 +351,7 @@
 }
 ```
 
-Видалити персональний нотіс: `method DELETE` - `/api/notices/:noticeId`
+Видалити персональний нотіс: `method DELETE` - `/api/notices/delete/:noticeId`
 Повертає об'єкт:
 
 ```python

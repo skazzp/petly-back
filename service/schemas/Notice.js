@@ -73,11 +73,7 @@ const addSchema = Joi.object({
     .valid(...categories)
     .required(),
   title: Joi.string().min(2).max(48).required(),
-<<<<<<< Updated upstream
-  sex: Joi.string().allow("male", "female").required(),
-=======
   sex: Joi.string().valid('male', 'female').required(),
->>>>>>> Stashed changes
   location: Joi.string().required(),
   name: Joi.string().min(2).max(16),
   breed: Joi.string().min(2).max(24),
@@ -88,12 +84,12 @@ const addSchema = Joi.object({
   price: Joi.number().min(1),
 });
 
-const schemasJoiNotice = {
-  addSchema,
-};
+// const schemasJoiNotice = {
+//   addSchema,
+// };
 
 module.exports = {
   Notice,
-  schemasJoiNotice,
+  addSchema,
   categories,
 };
