@@ -340,7 +340,7 @@
 }
 ```
 
-Отримати персональні нотіси:`method GET` - `/api/notices/favorites/personal`
+Отримати персональні нотіси:`method GET` - `/api/notices/personal`
 Повертає об'єкт:
 
 ```python
@@ -351,7 +351,7 @@
 }
 ```
 
-Видалити персональний нотіс: `method DELETE` - `/api/notices/:noticeId`
+Видалити персональний нотіс: `method DELETE` - `/api/notices/delete/:noticeId`
 Повертає об'єкт:
 
 ```python
