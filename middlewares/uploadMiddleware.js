@@ -29,9 +29,10 @@ const uploadMiddleware = async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
-  } finally {
-    await fs.unlink(req.file.path);
   }
+  // finally {
+  //    await fs.unlink(req.file.path);
+  // }
 };
 
 module.exports = uploadMiddleware;
