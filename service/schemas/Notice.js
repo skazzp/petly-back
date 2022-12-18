@@ -73,7 +73,14 @@ const addSchema = Joi.object({
     .allow(...categories)
     .required(),
   title: Joi.string().min(2).max(48).required(),
-  sex: Joi.string().allow("male", "female").required(),
+  sex: Joi.string()
+    .allow("male", "female")
+    .required()
+    .error(() => {
+      return {
+        message: "Sex allow only 'male', 'female' ",
+      };
+    }),
   location: Joi.string().required(),
   name: Joi.string().min(2).max(16),
   breed: Joi.string().min(2).max(24),
@@ -84,12 +91,12 @@ const addSchema = Joi.object({
   price: Joi.number().min(1),
 });
 
-const schemasJoiNotice = {
-  addSchema,
-};
+// const schemasJoiNotice = {
+//   addSchema,
+// };
 
 module.exports = {
   Notice,
-  schemasJoiNotice,
+  addSchema,
   categories,
 };
