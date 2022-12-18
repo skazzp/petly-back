@@ -53,7 +53,7 @@ router.delete(
 );
 
 router.post(
-  "/",
+  "/create",
   checkAuth,
   upload.single("image"),
   uploadMiddleware,
