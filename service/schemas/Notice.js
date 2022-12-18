@@ -1,7 +1,7 @@
-const { Schema, model } = require("mongoose");
-const Joi = require("joi");
+const { Schema, model } = require('mongoose');
+const Joi = require('joi');
 
-const categories = ["sell", "lost-found", "for-free"];
+const categories = ['sell', 'lost-found', 'for-free'];
 
 const noticeSchema = new Schema(
   {
@@ -11,15 +11,15 @@ const noticeSchema = new Schema(
         values: categories,
         message: `{VALUE} must be one of ${categories}`,
       },
-      required: [true, "Category is required"],
+      required: [true, 'Category is required'],
     },
     title: {
       type: String,
-      required: [true, "Title is required"],
+      required: [true, 'Title is required'],
     },
     name: {
       type: String,
-      default: "",
+      default: '',
     },
     birthday: {
       type: Date,
@@ -27,31 +27,31 @@ const noticeSchema = new Schema(
     },
     breed: {
       type: String,
-      default: "",
+      default: '',
     },
     sex: {
       type: String,
       enum: {
-        values: ["male", "female"],
-        message: "{VALUE} must be one of [`male`,`female`]",
+        values: ['male', 'female'],
+        message: '{VALUE} must be one of [`male`,`female`]',
       },
-      required: [true, "Sex is required"],
+      required: [true, 'Sex is required'],
     },
     location: {
       type: String,
-      required: [true, "Location is required"],
+      required: [true, 'Location is required'],
     },
     photoURL: {
       type: String,
-      default: "",
+      default: '',
     },
     photoId: {
       type: String,
-      default: "",
+      default: '',
     },
     comments: {
       type: String,
-      default: "",
+      default: '',
     },
     price: {
       type: Number,
@@ -59,28 +59,21 @@ const noticeSchema = new Schema(
     },
     owner: {
       type: Schema.Types.ObjectId,
-      ref: "users",
-      required: [true, "Owner is required"],
+      ref: 'users',
+      required: [true, 'Owner is required'],
     },
   },
   { versionKey: false, timestamps: true }
 );
 
-const Notice = model("notice", noticeSchema);
+const Notice = model('notice', noticeSchema);
 
 const addSchema = Joi.object({
   category: Joi.string()
-    .allow(...categories)
+    .valid(...categories)
     .required(),
   title: Joi.string().min(2).max(48).required(),
-  sex: Joi.string()
-    .valid("male", "female")
-    .required()
-    .error(() => {
-      return {
-        message: "Sex allow only 'male', 'female' ",
-      };
-    }),
+  sex: Joi.string().valid('male', 'female').required(),
   location: Joi.string().required(),
   name: Joi.string().min(2).max(16),
   breed: Joi.string().min(2).max(24),
