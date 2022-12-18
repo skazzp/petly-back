@@ -7,14 +7,21 @@ const checkAuth = require("../../helpers/checkAuth.js");
 const validator = require("../../helpers/validator.js");
 const errorHandler = require("../../helpers/errorHandler.js");
 const { schemaCreatePet } = require("../../helpers/validations.js");
+const {
+  uploadMiddleware,
+  upload,
+  cleanImgMiddleware,
+} = require("../../middlewares");
 
 router.get("/", checkAuth, errorHandler(getAllPets));
 router.post(
   "/",
   checkAuth,
+  upload.single("image"),
+  uploadMiddleware,
   validator(schemaCreatePet),
   errorHandler(createPetController)
 );
-router.delete("/:id", checkAuth, removePet);
+router.delete("/:id", checkAuth, cleanImgMiddleware, removePet);
 
 module.exports = router;

@@ -10,6 +10,7 @@ const uploadMiddleware = async (req, res, next) => {
   }
 
   const { path: tempUpload, originalname } = req.file;
+  console.log(originalname);
   const format = originalname.split(".").pop();
   const { userId } = req;
 
@@ -26,10 +27,12 @@ const uploadMiddleware = async (req, res, next) => {
       format
     );
 
-    req.photo = {};
-    folder === "users"
-      ? ((req.photo.photoURL = resultUrl), (req.photo.photoId = resultId))
-      : ((req.body.photoURL = resultUrl), (req.body.photoId = resultId));
+    // req.photo = {};
+    // folder === "users"
+    // ? ((req.photo.photoURL = resultUrl), (req.photo.photoId = resultId))
+    // : (
+    req.body.photoURL = resultUrl;
+    req.body.photoId = resultId;
 
     next();
   } catch (error) {
