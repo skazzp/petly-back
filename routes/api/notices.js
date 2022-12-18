@@ -13,7 +13,7 @@ const {
   isValidCategory,
 } = require("../../validation");
 
-const { schemasJoiNotice } = require("../../service/schemas/Notice");
+const { addSchema } = require("../../service/schemas/Notice");
 
 const router = Router();
 
@@ -45,7 +45,7 @@ router.get("/personal", checkAuth, controllerNotices.getPersonalNotices);
 router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
 
 router.delete(
-  "/:noticeId",
+  "delete/:noticeId",
   isValidId("noticeId"),
   checkAuth,
   cleanImgMiddleware,
@@ -57,7 +57,7 @@ router.post(
   checkAuth,
   upload.single("image"),
   uploadMiddleware,
-  schemaJoiValidator(schemasJoiNotice.addSchema),
+  schemaJoiValidator(addSchema),
   controllerNotices.addPersonalNotice
 );
 
