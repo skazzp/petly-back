@@ -12,9 +12,9 @@
 
 // const upload = multer({ storage });
 // module.exports = upload;
+
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
-// const express = require('express');
 const multer = require('multer');
 
 require('dotenv').config();
@@ -24,8 +24,6 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
-// const app = express();
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
@@ -38,6 +36,3 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage: storage });
 module.exports = upload;
-// app.post('/upload', parser.single('image'), function (req, res) {
-//   res.json(req.file);
-// });

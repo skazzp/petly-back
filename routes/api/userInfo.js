@@ -6,20 +6,6 @@ const checkAuth = require('../../helpers/checkAuth');
 const { uploadMiddleware, upload } = require('../../middlewares');
 
 router.get('/', checkAuth, getCurrentUser);
-router.patch(
-  '/update',
-  checkAuth,
-  upload.single('image'),
-  // (req, res, next) => {
-  //   console.log(req);
-  //   next();
-  // },
-  uploadMiddleware,
-  // (req, res, next) => {
-  //   console.log(444);
-  //   next();
-  // },
-  updateUserInfo
-);
+router.patch('/update', checkAuth, upload.single('image'), uploadMiddleware, updateUserInfo);
 
 module.exports = router;
