@@ -2,9 +2,20 @@
 const { cloudUpload } = require("../service/modules/cloudinaryService");
 
 const uploadMiddleware = async (req, res, next) => {
+  const folder = req.baseUrl.split("/")[2];
   if (!req.file) {
-    req.body.photoURL =
-      "https://res.cloudinary.com/dnkfxtdl2/image/upload/v1671266714/Catdog_uhpgig.jpg";
+    if (folder === "notices") {
+      req.body.photoURL =
+        "https://res.cloudinary.com/dnkfxtdl2/image/upload/v1671266714/Catdog_uhpgig.jpg";
+    }
+    if (folder === "users") {
+      req.body.photoURL =
+        "https://res.cloudinary.com/dnkfxtdl2/image/upload/v1671446506/users/dogg_uk5gvs.jpg";
+    }
+    if (folder === "pets") {
+      req.body.photoURL =
+        "https://res.cloudinary.com/dnkfxtdl2/image/upload/v1671446506/users/dogg_uk5gvs.jpg";
+    }
     req.body.photoId = "";
     return next();
   }
@@ -14,7 +25,6 @@ const uploadMiddleware = async (req, res, next) => {
   const format = originalname.split(".").pop();
   const { userId } = req;
 
-  const folder = req.baseUrl.split("/")[2];
   // const folder = 'users';
   console.log("folder", folder);
 
