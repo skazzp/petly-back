@@ -22,9 +22,9 @@ const getAll = async (req, res) => {
           limit,
         }).populate('owner', 'email phone');
 
-  if (!notices) {
-    throw errorHandler(404, 'Not found');
-  }
+  // if (!notices) {
+  //   throw errorHandler(404, 'Not found');
+  // }
 
   const total =
     title || category || location || name

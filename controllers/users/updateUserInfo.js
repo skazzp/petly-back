@@ -1,4 +1,4 @@
-const { updateInfo } = require("../../service/modules/currentUser");
+const { updateInfo } = require('../../service/modules/currentUser');
 
 const updateUserInfo = async (req, res, next) => {
   try {
@@ -6,9 +6,9 @@ const updateUserInfo = async (req, res, next) => {
 
     if (!user) {
       res.json({
-        status: "success",
+        status: 'success',
         code: 404,
-        message: "User not found",
+        message: 'User not found',
       });
     } else {
       const { password, ...userData } = user._doc;
