@@ -1,15 +1,12 @@
 const { Notice } = require('../../service/schemas/Notice');
 const { Users } = require('../../service/schemas/Users');
 
-// const { errorHandler } = require('../../helpers/errorHandler');
-
 const deletePersonalNotice = async (req, res) => {
   const { noticeId } = req.params;
 
   const isRemoved = await Notice.findByIdAndDelete(noticeId);
 
   if (!isRemoved) {
-    // throw errorHandler(404, "Not found");
     return res.json({
       code: 409,
       message: 'Notice not found.',

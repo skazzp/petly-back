@@ -1,16 +1,15 @@
 const { isValidObjectId } = require('mongoose');
 
-const errorHandler = require('../helpers/errorHandler');
-
 const isValidId = idParam => {
   return (req, res, next) => {
     const isCorrectId = isValidObjectId(req.params[idParam]);
-
+    console.log(isCorrectId);
     if (!isCorrectId) {
-      const error = errorHandler(400, 'ID is not correct');
-      next(error);
+      return res.json({
+        code: 417,
+        message: 'Expectation failed',
+      });
     }
-    next();
   };
 };
 
