@@ -13,7 +13,7 @@ const updateUserInfo = async (req, res, next) => {
     } else {
       const { password, ...userData } = user._doc;
       res.status(200).json({
-        userData,
+        ...userData,
       });
     }
   } catch (e) {
