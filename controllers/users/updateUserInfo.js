@@ -8,15 +8,12 @@ const updateUserInfo = async (req, res, next) => {
       res.json({
         status: "success",
         code: 404,
-        message: "Not found",
+        message: "User not found",
       });
     } else {
       const { password, ...userData } = user._doc;
-      res.json({
-        status: "success",
-        code: 200,
-        data: { userData },
-        message: "User information updated successfully",
+      res.status(200).json({
+        userData,
       });
     }
   } catch (e) {
