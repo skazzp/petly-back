@@ -2,7 +2,7 @@ const { Notice } = require('../../service/schemas/Notice');
 const errorHandler = require('../../helpers/errorHandler');
 
 const getAll = async (req, res) => {
-  const { title = '', category = '', location = '', name = '', page = 1, limit = 12 } = req.query;
+  const { title = '', category = '', location = '', name = '', page = 1, limit = 50 } = req.query;
   const skip = (page - 1) * limit;
 
   const notices =
