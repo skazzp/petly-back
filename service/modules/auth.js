@@ -21,7 +21,8 @@ const addUser = async (req) => {
   const passwordHash = req.body.password;
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(passwordHash, salt);
-  const avatar = await gravatar.url(req.body.email);
+  const avatar =
+    "https://res.cloudinary.com/dnkfxtdl2/image/upload/v1671447406/users/avatar-person_zinbi4.svg";
 
   const doc = new Users({
     email: req.body.email,
