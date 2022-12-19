@@ -14,6 +14,7 @@ const {
 } = require("../../validation");
 
 const { addSchema } = require("../../service/schemas/Notice");
+const getNameNotices = require("../../controllers/notices/getNameNotices");
 
 const router = Router();
 
@@ -41,6 +42,7 @@ router.delete(
 );
 
 router.get("/personal", checkAuth, controllerNotices.getPersonalNotices);
+router.get("/search", checkAuth, getNameNotices);
 
 router.get("/:noticeId", isValidId("noticeId"), controllerNotices.getById);
 
