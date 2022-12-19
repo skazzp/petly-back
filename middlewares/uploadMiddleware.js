@@ -10,7 +10,7 @@ const uploadMiddleware = async (req, res, next) => {
     }
     if (folder === "users") {
       req.body.photoURL =
-        "https://res.cloudinary.com/dnkfxtdl2/image/upload/v1671446506/users/dogg_uk5gvs.jpg";
+        "https://res.cloudinary.com/dnkfxtdl2/image/upload/v1671447406/users/avatar-person_zinbi4.svg";
     }
     if (folder === "pets") {
       req.body.photoURL =
