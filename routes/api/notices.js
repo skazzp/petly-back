@@ -5,10 +5,8 @@ const { uploadMiddleware, upload, cleanImgMiddleware } = require('../../middlewa
 const checkAuth = require('../../helpers/checkAuth');
 const { schemaJoiValidator, isValidId, isValidCategory } = require('../../validation');
 
-
-const { addSchema } = require("../../service/schemas/Notice");
-const getNameNotices = require("../../controllers/notices/getNameNotices");
-
+const { addSchema } = require('../../service/schemas/Notice');
+const getNameNotices = require('../../controllers/notices/getNameNotices');
 
 const router = Router();
 
@@ -31,10 +29,12 @@ router.delete(
   controllerNotices.deleteFromFavorites
 );
 
-
-router.get("/personal", checkAuth, controllerNotices.getPersonalNotices);
-router.get("/search", checkAuth, getNameNotices);
-
+router.get('/personal', checkAuth, controllerNotices.getPersonalNotices);
+router.get(
+  '/search',
+  // checkAuth,
+  getNameNotices
+);
 
 router.get('/:noticeId', isValidId('noticeId'), controllerNotices.getById);
 
