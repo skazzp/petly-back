@@ -195,7 +195,7 @@
 
 ### Routes: Sponsors and News
 
-- Sponsors = `/api/info/sponsors`;
+- Sponsors = `/api/info/friends`;
 - Повертає масив об'єктів з партнерами.
 
 - News = `/api/info/news`;
