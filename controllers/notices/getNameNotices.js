@@ -8,8 +8,9 @@ const getNameNotices = async (req, res) => {
   }).populate('owner', 'email phone');
   if (!notice || notice.length === 0) {
     return res.json({
-      code: 404,
-      message: 'no search results',
+      code: 200,
+      status: 'success',
+      data: [],
     });
   }
 
