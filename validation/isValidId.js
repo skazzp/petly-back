@@ -10,6 +10,7 @@ const isValidId = idParam => {
         message: 'Expectation failed',
       });
     }
+    next();
   };
 };
 
