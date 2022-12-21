@@ -1,5 +1,4 @@
 const { Sponsors } = require("../schemas/Sponsors");
-const { News } = require("../schemas/News");
 
 const getAllSponsors = async () => {
   const sponsors = await Sponsors.find();
@@ -12,17 +11,6 @@ const getAllSponsors = async () => {
   return sponsors;
 };
 
-const getAllNews = async () => {
-  const news = await News.find();
-
-  if (!news) {
-    return res.status(404).json({
-      message: "Not found",
-    });
-  }
-  return news;
-};
 module.exports = {
   getAllSponsors,
-  getAllNews,
 };
