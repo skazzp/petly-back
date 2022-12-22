@@ -1,29 +1,22 @@
-const { Notice } = require("../../service/schemas/Notice");
+const { Notice } = require('../../service/schemas/Notice');
 // const errorHandler = require('../../helpers/errorHandler');
 
 const getAll = async (req, res) => {
-  const {
-    title = "",
-    category = "",
-    location = "",
-    name = "",
-    page = 1,
-    limit = 12,
-  } = req.query;
+  const { title = '', category = '', location = '', name = '', page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
 
   const notices =
     title || category || location || name
       ? await Notice.find(
           {
-            title: { $regex: new RegExp(title, "i") },
-            category: { $regex: new RegExp(category, "i") },
-            location: { $regex: new RegExp(location, "i") },
-            name: { $regex: new RegExp(name, "i") },
+            title: { $regex: new RegExp(title, 'i') },
+            category: { $regex: new RegExp(category, 'i') },
+            location: { $regex: new RegExp(location, 'i') },
+            name: { $regex: new RegExp(name, 'i') },
           },
-          "-createdAt -updatedAt",
+          '-createdAt -updatedAt',
           { skip, limit }
-        ).populate("owner", "email phone")
+        ).populate('owner', 'email phone')
       : await Notice.find(
           {},
           {},
@@ -32,8 +25,8 @@ const getAll = async (req, res) => {
             limit,
           }
         )
-          .sort({ " createdAt ": -1 })
-          .populate("owner", "email phone");
+          .sort({ createdAt: -1 })
+          .populate('owner', 'email phone');
 
   // if (!notices) {
   //   throw errorHandler(404, 'Not found');
@@ -42,16 +35,16 @@ const getAll = async (req, res) => {
   const total =
     title || category || location || name
       ? await Notice.find({
-          title: { $regex: new RegExp(title, "i") },
-          category: { $regex: new RegExp(category, "i") },
-          location: { $regex: new RegExp(location, "i") },
-          name: { $regex: new RegExp(name, "i") },
+          title: { $regex: new RegExp(title, 'i') },
+          category: { $regex: new RegExp(category, 'i') },
+          location: { $regex: new RegExp(location, 'i') },
+          name: { $regex: new RegExp(name, 'i') },
         }).count()
       : await Notice.find({}).count();
 
   res.json({
     code: 200,
-    status: "success",
+    status: 'success',
     data: notices,
     totalPages: Math.ceil(total / limit),
     page,
