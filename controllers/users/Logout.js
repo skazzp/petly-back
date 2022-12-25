@@ -1,18 +1,29 @@
-const { updateUser, getUserById } = require("../../service/modules/auth");
+const { updateUser, getUserById } = require('../../service/modules/auth');
 
 const Logout = async (req, res, next) => {
   try {
     const user = await getUserById(req);
     await updateUser(user._id, { token: null });
-    req.Logout();
-    req.session.destroy();
-    res.json({
-      message: "success",
+
+    // req.logout(function (err) {
+    //   if (err) {
+    //     return next(err);
+    //   }
+    //   res.redirect('/');
+    // });
+    // req.session.destroy(function (err) {
+    //   if (err) {
+    //     return next(err);
+    //   }
+    //   res.redirect('/');
+    // });
+    return res.status(204).json({
+      message: 'success',
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
-      status: "not successful",
+    res.status(417).json({
+      status: 'not successful',
     });
   }
 };
