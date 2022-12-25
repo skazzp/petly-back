@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const gravatar = require("gravatar");
 const { Users } = require("../schemas/Users.js");
+const jwt = require("jsonwebtoken");
 const getUserOne = async (req, res) => {
   const user = await Users.findOne({ email: req.body.email });
   if (!user) {
@@ -51,9 +52,57 @@ const updateUser = async (id, body) => {
   await Users.findByIdAndUpdate({ _id: id }, body, { new: true });
 };
 
+const addOauthUser = async (profile) => {
+  const { picture, placesLived, email, displayName } = profile;
+  const userByEmail = await Users.findOne({ email: email });
+  if (!userByEmail) {
+    // const passwordHash = "unauthorizedUser";
+    // const salt = await bcrypt.genSalt(10);
+    // const hash = await bcrypt.hash(passwordHash, salt);
+    const doc = new Users({
+      email: email,
+      name: displayName,
+      phone: "Petly-phone",
+      password: "no",
+      city: placesLived ?? "Petly-city",
+      avatarURL: picture,
+      // birthday: new Date(req.body.birthday),
+    });
+    const user = await doc.save();
+    const token = jwt.sign(
+      {
+        _id: user._id,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "30d",
+      }
+    );
+    user.token = token;
+    await user.save();
+    console.log(user);
+    return user;
+  } else {
+    const token = jwt.sign(
+      {
+        _id: userByEmail._id,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "30d",
+      }
+    );
+    userByEmail.token = token;
+    await userByEmail.save();
+    console.log(userByEmail);
+    return userByEmail;
+  }
+};
+
 module.exports = {
   addUser,
   updateUser,
   getUserOne,
   getUserById,
+  addOauthUser,
 };

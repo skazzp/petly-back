@@ -4,6 +4,8 @@ const Logout = async (req, res, next) => {
   try {
     const user = await getUserById(req);
     await updateUser(user._id, { token: null });
+    req.Logout();
+    req.session.destroy();
     res.json({
       message: "success",
     });

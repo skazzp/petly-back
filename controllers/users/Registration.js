@@ -1,7 +1,7 @@
 const { addUser, updateUser } = require("../../service/modules/auth");
 const jwt = require("jsonwebtoken");
 
-const Regisration = async (req, res, next) => {
+const Registration = async (req, res, next) => {
   try {
     const user = await addUser(req);
     const token = jwt.sign(
@@ -26,4 +26,4 @@ const Regisration = async (req, res, next) => {
   }
 };
 
-module.exports = Regisration;
+module.exports = Registration;
