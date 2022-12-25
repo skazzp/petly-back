@@ -29,10 +29,12 @@ app.use("/api/usersinfo", userRouter);
 app.use("/api/users", authRouter);
 app.use("/api/info", infoRouter);
 app.use("/api/pets", petRouter);
+
 app.get("/auth/google", passport.authenticate('google', {scope: ['email', 'profile']}))
-app.get( '/auth/google/callback',
+
+app.get( '/google/callback',
     passport.authenticate( 'google', {
-        successRedirect: '/petly-front/notices',
+        successRedirect: 'http://localhost:3000/petly-front/notices',
         failureRedirect: '/petly-front/signup'
 }));
 app.get('/api/getlogout', (req, res) => {

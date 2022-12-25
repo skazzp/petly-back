@@ -53,34 +53,36 @@ const updateUser = async (id, body) => {
 };
 
 const addOauthUser = async (profile) => {
- const {picture, placesLived, email, displayName} = profile;
- const findByEmail = await Users.findOne({ email: email });
- if (!findByEmail) {
-  const passwordHash = "unauthorizedUser";
-  const salt = await bcrypt.genSalt(10);
-  const hash = await bcrypt.hash(passwordHash, salt);
-  const token = jwt.sign(
-    {
-      _id: user._id,
-    },
-    "secret123",
-    {
-      expiresIn: "30d",
-    }
-  );
-  const doc = new Users({
-    email: email,
-    name: displayName,
-    phone: req.body.phone,
-    password: hash,
-    city: placesLived,
-    avatarURL: picture,
-    // birthday: new Date(req.body.birthday),
-    token: token,
-  });
-  const user = await doc.save();
- } 
-
+  const { picture, placesLived, email, displayName } = profile;
+  const userByEmail = await Users.findOne({ email: email });
+  if (!userByEmail) {
+    // const passwordHash = "unauthorizedUser";
+    // const salt = await bcrypt.genSalt(10);
+    // const hash = await bcrypt.hash(passwordHash, salt);
+    const doc = new Users({
+      email: email,
+      name: displayName,
+      phone: "Petly-phone",
+      password: null,
+      city: placesLived ?? "Petly-city",
+      avatarURL: picture,
+      // birthday: new Date(req.body.birthday),
+      token: token,
+    });
+    const user = await doc.save();
+  } else {
+    const token = jwt.sign(
+      {
+        _id: userByEmail._id,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "30d",
+      }
+    );
+    userByEmail.token = token;
+    await userByEmail.save();
+  }
 };
 
 module.exports = {
@@ -88,5 +90,5 @@ module.exports = {
   updateUser,
   getUserOne,
   getUserById,
-  addOauthUser
+  addOauthUser,
 };

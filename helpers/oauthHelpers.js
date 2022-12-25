@@ -1,23 +1,21 @@
-const passport = require('passport');
-const  {addOauthUser} =  require('../service/modules/auth');
-const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
-const GOOGLE_CLIENT_ID = '982433285201-7qi125v31pfet84sm1p3qtqtnfv6ebeo.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET = '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';
+const passport = require("passport");
+const { addOauthUser } = require("../service/modules/auth");
+const GoogleStrategy = require("passport-google-oauth2").Strategy;
 
-passport.use(new GoogleStrategy({
-    clientID:     GOOGLE_CLIENT_ID,
-    clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3030/google/callback",
-    passReqToCallback   : true
-  },
-  async function(request, accessToken, refreshToken, profile, done) {
- 
-        await addOauthUser(profile)
-
-        return done(null, user);
-   
-  }
-));
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:3030/google/callback",
+      passReqToCallback: true,
+    },
+    async function (request, accessToken, refreshToken, profile, done) {
+      await addOauthUser(profile);
+      return done(null, profile);
+    }
+  )
+);
 
 // provider         always set to `google`
 // id
@@ -34,10 +32,10 @@ passport.use(new GoogleStrategy({
 // picture
 // coverPhoto
 
-passport.serializeUser(function(user, done) {
-done(null, user)
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
 
-})
-
-passport.deserializeUser(function(user, done) {
-    done(null, user)})
+passport.deserializeUser(function (user, done) {
+  done(null, user);
+});
