@@ -11,26 +11,12 @@ passport.use(
       passReqToCallback: true,
     },
     async function (request, accessToken, refreshToken, profile, done) {
-      await addOauthUser(profile);
-      return done(null, profile);
+      const user = await addOauthUser(profile);
+      console.log(profile);
+      return done(null, user);
     }
   )
 );
-
-// provider         always set to `google`
-// id
-// name
-// displayName
-// birthday
-// relationship
-// isPerson
-// isPlusUser
-// placesLived
-// language
-// emails
-// gender
-// picture
-// coverPhoto
 
 passport.serializeUser(function (user, done) {
   done(null, user);
