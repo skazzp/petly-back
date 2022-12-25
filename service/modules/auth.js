@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const gravatar = require("gravatar");
 const { Users } = require("../schemas/Users.js");
+const jwt = require("jsonwebtoken");
 const getUserOne = async (req, res) => {
   const user = await Users.findOne({ email: req.body.email });
   if (!user) {
@@ -51,9 +52,41 @@ const updateUser = async (id, body) => {
   await Users.findByIdAndUpdate({ _id: id }, body, { new: true });
 };
 
+const addOauthUser = async (profile) => {
+ const {picture, placesLived, email, displayName} = profile;
+ const findByEmail = await Users.findOne({ email: email });
+ if (!findByEmail) {
+  const passwordHash = "unauthorizedUser";
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(passwordHash, salt);
+  const token = jwt.sign(
+    {
+      _id: user._id,
+    },
+    "secret123",
+    {
+      expiresIn: "30d",
+    }
+  );
+  const doc = new Users({
+    email: email,
+    name: displayName,
+    phone: req.body.phone,
+    password: hash,
+    city: placesLived,
+    avatarURL: picture,
+    // birthday: new Date(req.body.birthday),
+    token: token,
+  });
+  const user = await doc.save();
+ } 
+
+};
+
 module.exports = {
   addUser,
   updateUser,
   getUserOne,
   getUserById,
+  addOauthUser
 };
