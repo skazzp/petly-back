@@ -23,7 +23,8 @@ app.use("/api/notices", noticesRouter);
 app.use("/api/usersinfo", userRouter);
 app.use("/api/users", authRouter);
 app.use("/api/info", infoRouter);
-app.use("/api/pets", petRouter);
+
+app.use("/api/rooms", petRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
