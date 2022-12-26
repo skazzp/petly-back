@@ -1,10 +1,7 @@
-const mongoose = require("mongoose");
-const app = require("./app");
-const socketConector = require("./helpers/socketconecter");
-const server = require("http").createServer(app);
-const io = require("socket.io")(server);
+const mongoose = require('mongoose');
+const app = require('./app');
 
-require("dotenv").config();
+require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
 const uriDb = process.env.MONGO_DB_URI;
@@ -15,14 +12,10 @@ const connection = mongoose.connect(uriDb, {
   useUnifiedTopology: true,
 });
 
-socketConector(io);
-
 connection
   .then(() => {
-    server.listen(PORT, function () {
+    app.listen(PORT, function () {
       console.log(`Server running. Use our API on port: ${PORT}`);
     });
   })
-  .catch((err) =>
-    console.log(`Server not running. Error message: ${err.message}`)
-  );
+  .catch(err => console.log(`Server not running. Error message: ${err.message}`));
