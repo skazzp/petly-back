@@ -7,11 +7,11 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3030/google/callback",
+      callbackURL: "https://petly-bc26.cyclic.app/google/callback",
+      // callbackURL: "http://localhost:3030/google/callback",
       passReqToCallback: true,
     },
     async function (request, accessToken, refreshToken, profile, done) {
-      console.log(profile);
       const user = await addOauthUser(profile);
       return done(null, user);
     }

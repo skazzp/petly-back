@@ -19,22 +19,29 @@ const getUserOne = async (req, res) => {
 };
 
 const addUser = async (req) => {
+  const user = await Users.findOne({ email: req.body.email });
+  if (user && password !== "no") throw Error;
   const passwordHash = req.body.password;
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(passwordHash, salt);
   const avatar =
     "https://res.cloudinary.com/dnkfxtdl2/image/upload/v1671447406/users/avatar-person_zinbi4.svg";
-
-  const doc = new Users({
-    email: req.body.email,
-    name: req.body.name,
-    phone: req.body.phone,
-    password: hash,
-    city: req.body.city,
-    avatarURL: avatar,
-    // birthday: new Date(req.body.birthday),
-  });
-  const user = await doc.save();
+  if (!user) {
+    const doc = new Users({
+      email: req.body.email,
+      name: req.body.name,
+      phone: req.body.phone,
+      password: hash,
+      city: req.body.city,
+      avatarURL: avatar,
+      // birthday: new Date(req.body.birthday),
+    });
+    user = await doc.save();
+  } else if (user && user.password === "no") {
+    (user.name = req.body.name), (user.password = hash);
+    (user.city = req.body.city), (user.phone = req.body.phone);
+    user = await doc.save();
+  }
   return user;
 };
 
@@ -63,7 +70,6 @@ const addOauthUser = async (profile) => {
       password: "no",
       city: placesLived ?? "Petly-city",
       avatarURL: picture,
-      // birthday: new Date(req.body.birthday),
     });
     user = await doc.save();
   }

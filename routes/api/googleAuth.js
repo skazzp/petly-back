@@ -1,7 +1,6 @@
 const express = require("express");
 const passport = require("passport");
 require("../../helpers/oauthHelpers");
-
 const googleRedirect = require("../../controllers/google/googleRedirect");
 const router = express.Router();
 
@@ -13,7 +12,7 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:3000/petly-front/signup",
+    failureRedirect: "https://skazzp.github.io/petly-front/register",
   }),
   googleRedirect
 );
