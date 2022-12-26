@@ -13,11 +13,11 @@
 // const upload = multer({ storage });
 // module.exports = upload;
 
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const multer = require('multer');
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const multer = require("multer");
 
-require('dotenv').config();
+require("dotenv").config();
 
 // cloudinary.config({
 //   cloud_name: 'dnkfxtdl2',
@@ -28,9 +28,9 @@ require('dotenv').config();
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'tmp',
-    format: async (req, file) => 'png', // supports promises as well
-    public_id: (req, file) => 'computed-filename-using-request',
+    folder: "tmp",
+    // format: async (req, file) => 'png', // supports promises as well
+    public_id: (req, file) => "computed-filename-using-request",
   },
 });
 
