@@ -23,7 +23,7 @@ const schemaUserUpdate = Joi.object({
 });
 
 const schemaCreatePet = Joi.object({
-  breed: Joi.string().min(2).max(16).required(),
+  breed: Joi.string().min(2).max(24).required(),
   photoURL: Joi.string().required(),
   photoId: Joi.string().allow(""),
   name: Joi.string().min(2).max(16).required(),
