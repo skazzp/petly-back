@@ -1,7 +1,7 @@
-const { Schema, model } = require('mongoose');
-const Joi = require('joi');
+const { Schema, model } = require("mongoose");
+const Joi = require("joi");
 
-const categories = ['sell', 'lost-found', 'for-free'];
+const categories = ["sell", "lost-found", "for-free"];
 
 const noticeSchema = new Schema(
   {
@@ -11,15 +11,15 @@ const noticeSchema = new Schema(
         values: categories,
         message: `{VALUE} must be one of ${categories}`,
       },
-      required: [true, 'Category is required'],
+      required: [true, "Category is required"],
     },
     title: {
       type: String,
-      required: [true, 'Title is required'],
+      required: [true, "Title is required"],
     },
     name: {
       type: String,
-      default: '',
+      default: "",
     },
     birthday: {
       type: Date,
@@ -27,31 +27,43 @@ const noticeSchema = new Schema(
     },
     breed: {
       type: String,
-      default: '',
+      default: "",
     },
     sex: {
       type: String,
       enum: {
-        values: ['male', 'female'],
-        message: '{VALUE} must be one of [`male`,`female`]',
+        values: ["male", "female"],
+        message: "{VALUE} must be one of [`male`,`female`]",
       },
-      required: [true, 'Sex is required'],
+      required: [true, "Sex is required"],
     },
     location: {
       type: String,
-      required: [true, 'Location is required'],
+      required: [true, "Location is required"],
     },
-    photoURL: {
-      type: String,
-      default: '',
-    },
-    photoId: {
-      type: String,
-      default: '',
-    },
+    img: [
+      {
+        photoURL: {
+          type: String,
+          default: "",
+        },
+        photoId: {
+          type: String,
+          default: "",
+        },
+      },
+    ],
+    // photoURL: {
+    //   type: String,
+    //   default: "",
+    // },
+    // photoId: {
+    //   type: String,
+    //   default: "",
+    // },
     comments: {
       type: String,
-      default: '',
+      default: "",
     },
     price: {
       type: Number,
@@ -60,26 +72,27 @@ const noticeSchema = new Schema(
     },
     owner: {
       type: Schema.Types.ObjectId,
-      ref: 'users',
-      required: [true, 'Owner is required'],
+      ref: "users",
+      required: [true, "Owner is required"],
     },
   },
   { versionKey: false, timestamps: true }
 );
 
-const Notice = model('notice', noticeSchema);
+const Notice = model("notice", noticeSchema);
 
 const addSchema = Joi.object({
   category: Joi.string()
     .valid(...categories)
     .required(),
   title: Joi.string().min(2).max(48).required(),
-  sex: Joi.string().valid('male', 'female').required(),
+  sex: Joi.string().valid("male", "female").required(),
   location: Joi.string().required(),
   name: Joi.string().min(2).max(16),
   breed: Joi.string().min(2).max(24),
-  photoURL: Joi.string(),
-  photoId: Joi.string().min(0),
+  img: Joi.array().items({ photoURL: Joi.string(), photoId: Joi.string() }),
+  // photoURL: Joi.array(),
+  // photoId: Joi.array().min(0),
   comments: Joi.string().min(8).max(120),
   birthday: Joi.date(),
   price: Joi.number().min(0),
