@@ -30,7 +30,7 @@ const storage = new CloudinaryStorage({
   params: {
     folder: "tmp",
     // format: async (req, file) => 'png', // supports promises as well
-    public_id: (req, file) => "computed-filename-using-request",
+    public_id: (req, file) => Date.now(),
   },
 });
 
