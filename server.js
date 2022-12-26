@@ -19,7 +19,7 @@ socketConector(io);
 
 connection
   .then(() => {
-    server.listen(PORT, function () {
+    app.listen(PORT, function () {
       console.log(`Server running. Use our API on port: ${PORT}`);
     });
   })
