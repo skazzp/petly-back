@@ -8,7 +8,7 @@ const validator = require("../../helpers/validator.js");
 const errorHandler = require("../../helpers/errorHandler.js");
 const { schemaCreatePet } = require("../../helpers/validations.js");
 const {
-  uploadMiddleware,
+  uploadSingleMiddleware,
   upload,
   cleanImgMiddleware,
 } = require("../../middlewares");
@@ -18,7 +18,7 @@ router.post(
   "/",
   checkAuth,
   upload.single("image"),
-  uploadMiddleware,
+  uploadSingleMiddleware,
   validator(schemaCreatePet),
   errorHandler(createPetController)
 );
