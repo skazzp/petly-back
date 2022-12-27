@@ -37,7 +37,7 @@ const getTitelNews = async (req, res) => {
   return res.json({
     code: 200,
     status: 'success',
-    data: news,
+    data: { news: news },
   });
 };
 
