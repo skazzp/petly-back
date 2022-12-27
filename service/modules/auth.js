@@ -19,8 +19,8 @@ const getUserOne = async (req, res) => {
 };
 
 const addUser = async (req) => {
-  const user = await Users.findOne({ email: req.body.email });
-  if (user && password !== "no") throw Error;
+  let user = await Users.findOne({ email: req.body.email });
+  if (user && user.password !== "no") throw Error;
   const passwordHash = req.body.password;
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(passwordHash, salt);
@@ -40,7 +40,7 @@ const addUser = async (req) => {
   } else if (user && user.password === "no") {
     (user.name = req.body.name), (user.password = hash);
     (user.city = req.body.city), (user.phone = req.body.phone);
-    user = await doc.save();
+    await user.save();
   }
   return user;
 };
@@ -61,7 +61,7 @@ const updateUser = async (id, body) => {
 
 const addOauthUser = async (profile) => {
   const { picture, placesLived, email, displayName } = profile;
-  const user = await Users.findOne({ email: email });
+  let user = await Users.findOne({ email: email });
   if (!user) {
     const doc = new Users({
       email: email,
