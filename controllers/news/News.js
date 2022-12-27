@@ -18,4 +18,28 @@ const getAllNews = async (req, res) => {
     data: { news: results },
   });
 };
-module.exports = getAllNews;
+
+
+const getTitelNews = async (req, res) => {
+  const {  text } = req.query;
+  console.log(req.query);
+  const news = await News.find({
+    title: { $regex: text, $options: 'i' },
+  })
+  if (!news || news.length === 0) {
+    return res.json({
+      code: 200,
+      status: 'success',
+      data: [],
+    });
+  }
+
+  return res.json({
+    code: 200,
+    status: 'success',
+    data: news,
+  });
+};
+
+
+module.exports = {getAllNews, getTitelNews};
