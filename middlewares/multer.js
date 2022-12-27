@@ -1,9 +1,9 @@
-// const multer = require("multer");
-// const path = require("path");
+// const multer = require('multer');
+// const path = require('path');
 
 // const storage = multer.diskStorage({
 //   destination: (req, file, cb) => {
-//     cb(null, path.join(__dirname, "../", "tmp"));
+//     cb(null, path.join(__dirname, '../', 'tmp'));
 //   },
 //   filename: (req, file, cb) => {
 //     cb(null, file.originalname);
@@ -13,24 +13,25 @@
 // const upload = multer({ storage });
 // module.exports = upload;
 
-const cloudinary = require("cloudinary").v2;
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
-const multer = require("multer");
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
 
-require("dotenv").config();
+require('dotenv').config();
 
-// cloudinary.config({
-//   cloud_name: 'dnkfxtdl2',
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_API_SECRET,
-// });
+cloudinary.config({
+  cloud_name: 'dnkfxtdl2',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "tmp",
-    // format: async (req, file) => 'png', // supports promises as well
-    public_id: (req, file) => Date.now(),
+    folder: 'tmp',
+    // format: async (req, file) => 'jpg', // supports promises as well
+    public_id: (req, file) => uuidv4(),
   },
 });
 
