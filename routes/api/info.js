@@ -1,7 +1,6 @@
 const express = require("express");
 const Sponsors = require("../../controllers/friends/Sponsors.js");
 const {getAllNews, getTitelNews} = require("../../controllers/news/News.js");
-// const checkAuth = require('../../helpers/checkAuth.js');
 const errorHandler = require("../../helpers/errorHandler.js");
 
 const router = express.Router();
