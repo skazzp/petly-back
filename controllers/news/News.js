@@ -21,23 +21,29 @@ const getAllNews = async (req, res) => {
 
 
 const getTitelNews = async (req, res) => {
+  const { page = 1, perPage = 6 } = req.query;
+  const skip = (page - 1) * perPage;
   const {  text } = req.query;
-  console.log(req.query);
-  const news = await News.find({
+  const results = await News.find({
     title: { $regex: text, $options: 'i' },
-  })
-  if (!news || news.length === 0) {
+  }).skip(skip).limit(perPage);
+  if (!results) {
+    return res.status(404).json({
+      message: "Not found",
+    });
+  }
+  if (results.length === 0) {
     return res.json({
       code: 200,
       status: 'success',
-      data: [],
+      data: null,
     });
   }
 
   return res.json({
     code: 200,
     status: 'success',
-    data: { news: news },
+    data: { news: results },
   });
 };
 
