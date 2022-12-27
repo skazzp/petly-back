@@ -27,6 +27,7 @@
     "multer": "^1.4.5-lts.1",
     "multer-storage-cloudinary": "^4.0.0",
     "passport": "^0.6.0",
+    "passport-facebook": "^3.0.0",
     "passport-google-oauth2": "^0.2.0",
     "query-string": "^8.1.0",
     "uuid": "^9.0.0"
