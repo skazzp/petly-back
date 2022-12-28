@@ -3,7 +3,6 @@ const { Notice } = require("../../service/schemas/Notice");
 const getNameNotices = async (req, res) => {
  const {  page = 1, limit = 12, text = "" } = req.query;
  const skip = (page - 1) * limit;
- console.log(req.query.text);
 
  const total = text
   ? await Notice.find({

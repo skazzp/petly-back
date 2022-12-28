@@ -23,7 +23,6 @@ const getAllNews = async (req, res) => {
  });
 };
 
-// ///////////////////////////////////////////////////////////////////////
 const getTitelNews = async (req, res) => {
  const { page = 1, perPage = 6 } = req.query;
  const skip = (page - 1) * perPage;

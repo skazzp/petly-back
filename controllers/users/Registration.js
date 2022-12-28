@@ -1,5 +1,6 @@
 const { addUser, updateUser } = require("../../service/modules/auth");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const Registration = async (req, res, next) => {
   try {
@@ -8,7 +9,7 @@ const Registration = async (req, res, next) => {
       {
         _id: user._id,
       },
-      "secret123",
+      process.env.JWT_SECRET,
       {
         expiresIn: "30d",
       }

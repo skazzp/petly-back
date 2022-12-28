@@ -1,13 +1,12 @@
-const { isValidObjectId } = require('mongoose');
+const { isValidObjectId } = require("mongoose");
 
-const isValidId = idParam => {
+const isValidId = (idParam) => {
   return (req, res, next) => {
     const isCorrectId = isValidObjectId(req.params[idParam]);
-    console.log(isCorrectId);
     if (!isCorrectId) {
       return res.json({
         code: 417,
-        message: 'Expectation failed',
+        message: "Expectation failed",
       });
     }
     next();

@@ -23,8 +23,6 @@ const userSchema = mongoose.Schema(
     },
     phone: {
       type: String,
-      // required: [true, "Phone is required"],
-      // default: "",
       unique: true,
     },
     token: {

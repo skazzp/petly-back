@@ -1,5 +1,6 @@
-const { updateUser, getUserOne } = require('../../service/modules/auth');
-const jwt = require('jsonwebtoken');
+const { updateUser, getUserOne } = require("../../service/modules/auth");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const Login = async (req, res, next) => {
   try {
@@ -9,9 +10,9 @@ const Login = async (req, res, next) => {
       {
         _id: user._id,
       },
-      'secret123',
+      process.env.JWT_SECRET,
       {
-        expiresIn: '30d',
+        expiresIn: "30d",
       }
     );
 
@@ -22,7 +23,7 @@ const Login = async (req, res, next) => {
   } catch (err) {
     console.log(err);
     res.status(401).json({
-      message: 'Email or password is wrong',
+      message: "Email or password is wrong",
     });
   }
 };
