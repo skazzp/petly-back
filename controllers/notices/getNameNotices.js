@@ -1,24 +1,40 @@
-const { Notice } = require('../../service/schemas/Notice');
+const { Notice } = require("../../service/schemas/Notice");
 
 const getNameNotices = async (req, res) => {
-  const { query: text } = req.query;
-  console.log(req.query);
-  const notice = await Notice.find({
-    title: { $regex: text, $options: 'i' },
-  }).populate('owner', 'email phone');
-  if (!notice || notice.length === 0) {
-    return res.json({
-      code: 200,
-      status: 'success',
-      data: [],
-    });
-  }
+ const {  page = 1, limit = 12, text = "" } = req.query;
+ const skip = (page - 1) * limit;
+ console.log(req.query.text);
 
+ const total = text
+  ? await Notice.find({
+     title: { $regex: new RegExp(text, "i") },
+    }).count()
+  : await Notice.find({}).count();
+
+ const notice = await Notice.find(
+  {
+   title: { $regex: text, $options: "i" },
+  },
+  "-createdAt -updatedAt",
+  { skip, limit }
+ ).populate("owner", "email phone");
+ if (!notice || notice.length === 0) {
   return res.json({
-    code: 200,
-    status: 'success',
-    data: notice,
+   code: 200,
+   status: "success",
+   data: [],
+   page,
+   totalPages: Math.ceil(total / limit),
   });
+ }
+
+ return res.json({
+  code: 200,
+  status: "success",
+  data: notice,
+  page,
+  totalPages: Math.ceil(total / limit),
+ });
 };
 
 module.exports = getNameNotices;
