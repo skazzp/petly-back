@@ -53,14 +53,6 @@ const noticeSchema = new Schema(
         },
       },
     ],
-    // photoURL: {
-    //   type: String,
-    //   default: "",
-    // },
-    // photoId: {
-    //   type: String,
-    //   default: "",
-    // },
     comments: {
       type: String,
       default: "",
@@ -91,16 +83,11 @@ const addSchema = Joi.object({
   name: Joi.string().min(2).max(16),
   breed: Joi.string().min(2).max(24),
   img: Joi.array().items({ photoURL: Joi.string(), photoId: Joi.string() }),
-  // photoURL: Joi.array(),
-  // photoId: Joi.array().min(0),
   comments: Joi.string().min(8).max(120),
   birthday: Joi.date(),
   price: Joi.number().min(0),
 });
 
-// const schemasJoiNotice = {
-//   addSchema,
-// };
 
 module.exports = {
   Notice,

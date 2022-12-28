@@ -44,7 +44,6 @@ router.delete(
 router.get("/personal", checkAuth, controllerNotices.getPersonalNotices);
 router.get(
   "/search",
-  // checkAuth,
   getNameNotices
 );
 

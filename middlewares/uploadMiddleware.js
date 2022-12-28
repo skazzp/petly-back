@@ -1,5 +1,3 @@
-// const fs = require('fs/promises');
-// const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const { cloudUpload } = require("../service/modules/cloudinaryService");
 
 const uploadMiddleware = async (req, res, next) => {
@@ -21,25 +19,9 @@ const uploadMiddleware = async (req, res, next) => {
     return next();
   }
 
-  // const { path: tempUpload, originalname } = req.files;
-  //  const format = originalname.split(".").pop();
-  // const { userId } = req;
-  // // const folder = 'users';
-  // const id = `${userId + "_" + Date.now()}`;
-
   try {
-    //   const { resultUrl, resultId } = await cloudUpload(
-    //     tempUpload,
-    //     id,
-    //     folder,
-    //     format
-    //   );
-
-    //   req.body.photoURL = resultUrl;
-    //   req.body.photoId = resultId;
     if (req.method === "POST") {
       const urls = [];
-      // const ids = [];
       const files = req.files;
       const { userId } = req;
       for (const file of files) {
@@ -56,23 +38,13 @@ const uploadMiddleware = async (req, res, next) => {
         item.photoURL = resultUrl;
         item.photoId = resultId;
         urls.push(item);
-        // ids.push(resultId);
-
-        // req.body.photoURL = urls;
-        // req.body.photoId = ids;
         req.body.img = urls;
-        console.log("item----->>>>>>", item);
       }
-      console.log(urls);
     }
     next();
   } catch (error) {
     console.log(error);
   }
-  // пофиксить, чтоб файл удалялся на клаудинари в тмп
-  // finally {
-  //    await fs.unlink(req.file.path);
-  // }
 };
 
 module.exports = uploadMiddleware;

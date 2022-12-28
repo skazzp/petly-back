@@ -5,17 +5,18 @@ const deletePet = async (id) => {
 };
 
 const createPet = async (req) => {
-  let birthday = "";
-  if (req.body.birthday && req.body.birthday !== "") {
-    birthday = new Date(req.body.birthday).toISOString().split("T")[0];
+  const { birthday, name, breed, photoURL, photoId, comments } = req.body;
+  let petBirthday = "";
+  if (birthday && birthday !== "") {
+    petBirthday = new Date(birthday).toISOString().split("T")[0];
   }
   const doc = new Pet({
-    name: req.body.name,
-    breed: req.body.breed,
-    photoURL: req.body.photoURL,
-    photoId: req.body.photoId,
-    comments: req.body.comments,
-    birthday: birthday,
+    name: name,
+    breed: breed,
+    photoURL: photoURL,
+    photoId: photoId,
+    comments: comments,
+    birthday: petBirthday,
     owner: req.userId,
   });
   const pet = await doc.save();
