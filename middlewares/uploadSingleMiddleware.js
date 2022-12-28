@@ -1,4 +1,3 @@
-// const fs = require('fs/promises');
 const { cloudUpload } = require("../service/modules/cloudinaryService");
 
 const uploadMiddleware = async (req, res, next) => {
@@ -21,12 +20,8 @@ const uploadMiddleware = async (req, res, next) => {
   }
 
   const { path: tempUpload, originalname } = req.file;
-  console.log(originalname, req.baseUrl);
   const format = originalname.split(".").pop();
   const { userId } = req;
-
-  // const folder = 'users';
-  console.log("folder", folder);
 
   const id = `${userId + "_" + Date.now()}`;
 

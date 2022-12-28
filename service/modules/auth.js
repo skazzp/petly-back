@@ -1,7 +1,8 @@
 const bcrypt = require("bcrypt");
-const gravatar = require("gravatar");
 const { Users } = require("../schemas/Users.js");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
 const getUserOne = async (req, res) => {
   const user = await Users.findOne({ email: req.body.email });
   if (!user) {
@@ -34,7 +35,6 @@ const addUser = async (req) => {
       password: hash,
       city: req.body.city,
       avatarURL: avatar,
-      // birthday: new Date(req.body.birthday),
     });
     user = await doc.save();
   } else if (user && user.password === "no") {
@@ -78,8 +78,7 @@ const addOauthUser = async (profile) => {
     {
       _id: user._id,
     },
-    "secret123",
-    // process.env.JWT_SECRET,
+    process.env.JWT_SECRET,
     {
       expiresIn: "30d",
     }

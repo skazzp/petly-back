@@ -2,7 +2,6 @@ const { Notice } = require('../../service/schemas/Notice');
 
 const getNameNotices = async (req, res) => {
   const { query: text } = req.query;
-  console.log(req.query);
   const notice = await Notice.find({
     title: { $regex: text, $options: 'i' },
   }).populate('owner', 'email phone');
