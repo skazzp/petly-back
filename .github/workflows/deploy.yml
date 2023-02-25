@@ -33,7 +33,7 @@ jobs:
       password: oPp8MV9zo4uo
       # port: 21
       # dry-run: true
-      # local-dir: ./
+      local-dir: ./
       server-dir: ./n-code.com.ua/
       exclude: |
        **/.git*
