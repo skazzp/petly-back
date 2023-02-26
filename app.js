@@ -21,8 +21,8 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-// const formatsLogger = app.get("env") === "development" ? "dev" : "short";
-// app.use(logger(formatsLogger));
+const formatsLogger = app.get("env") === "development" ? "dev" : "true";
+app.use(logger(formatsLogger));
 app.use(
  cors({
   origin: "*",
