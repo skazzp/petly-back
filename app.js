@@ -21,43 +21,17 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-const formatsLogger = app.get("env") === "development" ? "dev" : "true";
+const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
-app.use(
- cors({
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
- })
-);
+app.use(cors());
 
-app.get("/", function (req, res) {
- res.send("Hello World");
-});
-app.get(
- "/fox",
-
- function (req, res) {
-  res.send("Hello FoX");
- }
-);
 app.use(express.json());
-// app.use("/", googleRouter);
+app.use("/", googleRouter);
 app.use("/api/notices", noticesRouter);
 app.use("/api/usersinfo", userRouter);
 app.use("/api/users", authRouter);
 app.use("/api/info", infoRouter);
-app.use(
- "/api/pets",
- cors({
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
- }),
- petRouter
-);
+app.use("/api/pets", petRouter);
 
 app.use((req, res) => {
  res.status(404).json({ message: "Not found" });
