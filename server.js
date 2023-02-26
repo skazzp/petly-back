@@ -3,7 +3,7 @@ const app = require("./app");
 
 require("dotenv").config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 const uriDb = process.env.MONGO_DB_URI;
 mongoose.Promise = global.Promise;
 
