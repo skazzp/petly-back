@@ -18,21 +18,40 @@ app.use(
   saveUninitialized: false,
  })
 );
-app.get("/", function (req, res) {
- res.send("Hello World");
-});
+
 app.use(passport.initialize());
 app.use(passport.session());
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 app.use(cors());
+app.get(
+ "/",
+ cors({
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+ }),
+ function (req, res) {
+  res.send("Hello World");
+ }
+);
 app.use(express.json());
 // app.use("/", googleRouter);
 app.use("/api/notices", noticesRouter);
 app.use("/api/usersinfo", userRouter);
 app.use("/api/users", authRouter);
 app.use("/api/info", infoRouter);
-app.use("/api/pets", cors(), petRouter);
+app.use(
+ "/api/pets",
+ cors({
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+ }),
+ petRouter
+);
 
 app.use((req, res) => {
  res.status(404).json({ message: "Not found" });
