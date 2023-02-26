@@ -23,17 +23,26 @@ app.use(passport.initialize());
 app.use(passport.session());
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
-app.use(cors());
-app.get(
- "/",
+app.use(
  cors({
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204,
- }),
+ })
+);
+app.get(
+ "/",
+
  function (req, res) {
   res.send("Hello World");
+ }
+);
+app.get(
+ "/fox",
+
+ function (req, res) {
+  res.send("Hello FoX");
  }
 );
 app.use(express.json());
