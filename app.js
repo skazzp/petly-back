@@ -12,11 +12,11 @@ const passport = require("passport");
 const app = express();
 
 app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-  })
+ session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+ })
 );
 app.use(passport.initialize());
 app.use(passport.session());
@@ -29,14 +29,14 @@ app.use("/api/notices", noticesRouter);
 app.use("/api/usersinfo", userRouter);
 app.use("/api/users", authRouter);
 app.use("/api/info", infoRouter);
-app.use("/api/pets", petRouter);
+app.use("/api/pets", cors(), petRouter);
 
 app.use((req, res) => {
-  res.status(404).json({ message: "Not found" });
+ res.status(404).json({ message: "Not found" });
 });
 
 app.use((err, req, res, next) => {
-  res.status(500).json({ message: err.message });
+ res.status(500).json({ message: err.message });
 });
 
 module.exports = app;
