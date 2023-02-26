@@ -18,13 +18,16 @@ app.use(
   saveUninitialized: false,
  })
 );
+app.get("/", function (req, res) {
+ res.send("Hello World");
+});
 app.use(passport.initialize());
 app.use(passport.session());
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
-app.use("/", googleRouter);
+// app.use("/", googleRouter);
 app.use("/api/notices", noticesRouter);
 app.use("/api/usersinfo", userRouter);
 app.use("/api/users", authRouter);
